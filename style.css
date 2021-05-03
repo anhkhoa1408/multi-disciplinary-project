@@ -1,0 +1,137 @@
+/* Utils */
+* {
+    padding: 0;
+    margin: 0; 
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+/* Home section */
+
+/* Header section */
+#main {
+    height: 100%;
+}
+
+#header-section {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 50px;
+    background-color: #CAE6D9;
+    padding: 0px;
+    z-index: 1;
+}
+
+
+#header-section .sign-out{
+    float: right;
+    overflow: hidden;
+    line-height: 50px;
+}
+
+#header-section .fas.fa-sign-out-alt {
+    font-size: 20px;
+    padding: 15px;
+    color:black;
+}
+
+/* Navigation section */
+
+#nav-section {
+    width: 6%;
+    height: 100%;
+    /* position: relative;
+    top: 50px;
+    left: 0px; */
+    margin-top: 50px;
+    float: left;
+    overflow: hidden;
+}
+
+#nav-section .nav {
+    height: 100%;
+    background-color: #2A616E;
+}
+
+.nav {
+    list-style-type: none;
+}
+
+.nav li {
+    color: #fff;
+    text-align: center;
+    padding: 20px 10px;
+}
+
+.nav li:hover {
+    background-color: #ccc;
+}
+
+.nav .btn {
+    font-size: 35px;
+    text-align: center;
+    color: #fff;
+    width: 100%;
+    justify-content: center;
+    padding: 5px;
+    /* border: 1px solid #fff; */
+}
+
+/* Content section */
+
+#content-section {
+    width: 94%;
+    height: 100%;
+    margin-top: 50px;
+    float: right;
+    overflow: hidden;
+    background-color: #041A23;
+    position: relative;
+}
+
+#content-section .gauge.gauge-temp {
+    position: absolute;
+    top: 20%;
+    left: 15%;
+}
+
+#content-section .gauge.gauge-humid {
+    position: absolute;
+    top: 20%;
+    right: 15%;
+}
+
+#content-section .gauge {
+    padding-top: 15px;
+    text-align: center;
+}
+
+#content-section .toggle {
+    display: block;
+    text-align: center;
+    position: relative;
+    line-height: 34px;
+    top: 70%;
+}
+
+#content-section .off-switch {
+    display: inline-block;
+    padding-right: 10px;
+    line-height: 34px;
+    color: #fff;
+}
+
+#content-section .on-switch {
+    display: inline-block;
+    padding-left: 10px;
+    line-height: 34px;
+    color: #fff;
+}
+
+
+
