@@ -1,17 +1,22 @@
 /* Utils */
+
 * {
     padding: 0;
-    margin: 0; 
+    margin: 0;
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     height: 100%;
 }
 
+
 /* Home section */
 
+
 /* Header section */
+
 #main {
     height: 100%;
 }
@@ -27,8 +32,7 @@ html, body {
     z-index: 1;
 }
 
-
-#header-section .sign-out{
+#header-section .sign-out {
     float: right;
     overflow: hidden;
     line-height: 50px;
@@ -37,8 +41,9 @@ html, body {
 #header-section .fas.fa-sign-out-alt {
     font-size: 20px;
     padding: 15px;
-    color:black;
+    color: black;
 }
+
 
 /* Navigation section */
 
@@ -82,6 +87,7 @@ html, body {
     /* border: 1px solid #fff; */
 }
 
+
 /* Content section */
 
 #content-section {
@@ -106,10 +112,65 @@ html, body {
     right: 15%;
 }
 
+
+/*Function: content slider*/
+
+#content-slider {
+    width: 94%;
+    height: 100%;
+    margin-top: 50px;
+    float: right;
+    overflow: hidden;
+    background-color: #041A23;
+    position: relative;
+}
+
+#content-slider .gauge.gauge-temp {
+    position: absolute;
+    top: 150px;
+    left: 20px;
+}
+
+#content-slider .gauge.gauge-humid {
+    position: absolute;
+    top: 350px;
+    left: 20px;
+}
+
+#content-slider .gauge.gauge-temp-number {
+    position: absolute;
+    top: 190px;
+    left: 1000px;
+    color: indigo;
+    background-color: white;
+    border: 1px black;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+}
+
+#content-slider .gauge.gauge-humid-number {
+    position: absolute;
+    top: 390px;
+    left: 1000px;
+    color: indigo;
+    background-color: white;
+    border: 1px black;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+}
+
+
+/*Function: Gauge*/
+
 #content-section .gauge {
     padding-top: 15px;
     text-align: center;
 }
+
+
+/*Function: Toggle*/
 
 #content-section .toggle {
     display: block;
@@ -132,6 +193,3 @@ html, body {
     line-height: 34px;
     color: #fff;
 }
-
-
-
