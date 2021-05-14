@@ -1,7 +1,6 @@
 <?php
 
 namespace Bluerhinos;
-header('Access-Control-Allow-Origin: *');
 
 /*
  	phpMQTT
