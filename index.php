@@ -10,8 +10,7 @@
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/src/gauge.css">
     <link rel="stylesheet" href="/src/toggle.css">
-    <link rel="stylesheet" href="/src/settime.css">
-
+    <script src="/src/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -35,32 +34,56 @@
         </div>
 
         <!-- Content section -->
-        <!-------------------------------------------------------------------------------------------------->
-        <!--Author:Pham Nguyen Thai Khuong ------------------------------------------------------------------------->
-        <!--Id: Range-slider ----------------------------------------------------------------------------->
-        <!--Note: Set Time---------------------------------------------------------------------------------->
         <div id="content-section">
-            
-            <!-- <p>Time Range: <span class="slider-time">10:00 AM</span> - <span class="slider-time2">12:00 PM</span></p> -->
-            
-            <div class="container start">
-                <div class="length range__slider start-slider">
-                    <div class="length__title field-title" data-length='12:00'>Start Time:</div>
-                    <input id="slider" type="range" min="0" max="1439" value="700" />
+
+            <div class="gauge gauge-temp">
+                <div class="gauge__body_temp">
+                    <div class="gauge__fill_temp"></div>
+                    <div class="gauge__cover_temp"></div>
                 </div>
+
+                <div class="temperature">
+                    <p>Temperature</p>
+                </div>
+
+
             </div>
 
-            <div class="container end">
-                <div class="length range__slider end-slider">
-                    <div class="length__title field-title" data-length='12:00'>End Time:</div>
-                    <input id="slider" type="range" min="0" max="1439" value="700" />
+            <div class="gauge gauge-humid">
+                <div class="gauge__body_humid">
+                    <div class="gauge__fill_humid"></div>
+                    <div class="gauge__cover_humid"></div>
                 </div>
+
+                <div class="humidity">
+                    <p>Humidity</p>
+                </div>
+
+            </div>
+            <script src="src/gauge.js"></script>
+
+            <!-- button ON/OFF -->
+            <div class="toggle">
+                <p class="off-switch">OFF</p>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+                <p class="on-switch">ON</p>
             </div>
 
-            <button type="button" class="button set-time-btn" onclick="alert('Hello world!')">Submit!</button>
-        
+
         </div>
-        <script src="/src/settime.js"></script>
+
+        <script>
+            $.ajax({
+                url: "Server/subscribe.php",
+                type: 'GET',
+                success: function(data) {
+                    console.log(data);
+                }
+            });
+        </script>
 
     </div>
 </body>

@@ -240,7 +240,7 @@ class phpMQTT
         $string = $this->read(4);
 
         if (ord($string[0]) >> 4 === 2 && $string[3] === chr(0)) {
-            $this->_debugMessage('Connected to Broker');
+            // $this->_debugMessage('Connected to Broker');
         } else {
             $this->_errorMessage(
                 sprintf(
@@ -356,7 +356,7 @@ class phpMQTT
         $head .= chr(0x00);
         fwrite($this->socket, $head, 2);
         $this->timesinceping = time();
-        $this->_debugMessage('ping sent');
+        // $this->_debugMessage('ping sent');
     }
 
     /**
@@ -486,9 +486,9 @@ class phpMQTT
             }
         }
 
-        if ($found === false) {
-            $this->_debugMessage('msg received but no match in subscriptions');
-        }
+        // if ($found === false) {
+        //     $this->_debugMessage('msg received but no match in subscriptions');
+        // }
 
         return $found;
     }
@@ -505,7 +505,7 @@ class phpMQTT
     public function proc(bool $loop = true)
     {
         if (feof($this->socket)) {
-            $this->_debugMessage('eof receive going to reconnect for good measure');
+            // $this->_debugMessage('eof receive going to reconnect for good measure');
             fclose($this->socket);
             $this->connect_auto(false);
             if (count($this->topics)) {
@@ -521,13 +521,13 @@ class phpMQTT
             }
         } else {
             $cmd = (int)(ord($byte) / 16);
-            $this->_debugMessage(
-                sprintf(
-                    'Received CMD: %d (%s)',
-                    $cmd,
-                    isset(static::$known_commands[$cmd]) === true ? static::$known_commands[$cmd] : 'Unknown'
-                )
-            );
+            // $this->_debugMessage(
+            //     sprintf(
+            //         'Received CMD: %d (%s)',
+            //         $cmd,
+            //         isset(static::$known_commands[$cmd]) === true ? static::$known_commands[$cmd] : 'Unknown'
+            //     )
+            // );
 
             $multiplier = 1;
             $value = 0;
@@ -537,7 +537,7 @@ class phpMQTT
                 $multiplier *= 128;
             } while (($digit & 128) !== 0);
 
-            $this->_debugMessage('Fetching: ' . $value . ' bytes');
+            // $this->_debugMessage('Fetching: ' . $value . ' bytes');
 
             $string = $value > 0 ? $this->read($value) : '';
 
@@ -554,12 +554,12 @@ class phpMQTT
         }
 
         if ($this->timesinceping < (time() - $this->keepalive)) {
-            $this->_debugMessage('not had something in a while so ping');
+            // $this->_debugMessage('not had something in a while so ping');
             $this->ping();
         }
 
         if ($this->timesinceping < (time() - ($this->keepalive * 2))) {
-            $this->_debugMessage('not seen a packet in a while, disconnecting/reconnecting');
+            // $this->_debugMessage('not seen a packet in a while, disconnecting/reconnecting');
             fclose($this->socket);
             $this->connect_auto(false);
             if (count($this->topics)) {
