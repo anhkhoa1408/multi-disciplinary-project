@@ -324,7 +324,6 @@ class phpMQTT
         $i++;
         $buffer .= chr($id % 256);
         $i++;
-
         foreach ($topics as $key => $topic) {
             $buffer .= $this->strwritestring($key, $i);
             $buffer .= chr($topic['qos']);
@@ -345,6 +344,30 @@ class phpMQTT
 
         $bytes = ord(substr($string, 1, 1));
         $this->read($bytes);
+    }
+
+    /**
+     * unsubscribes to topics
+     *
+     * @param $topics
+     * @param int $qos
+     */
+    public function unsubscribe($topics): void
+    {
+        foreach ($topics as $topic) {
+            unset($this->topics[$topic]);
+        }
+    }
+
+    /**
+     * print subscribed topics
+     */
+    public function print_topics(): void
+    {
+        foreach ($this->topics as $key => $value)
+        {
+            $this->_debugMessage("Topics: " . $key . " " . json_encode($value));
+        }
     }
 
     /**
