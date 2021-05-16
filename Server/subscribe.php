@@ -1,12 +1,11 @@
 <?php
 require('phpMQTT.php');
-// header('Access-Control-Allow-Origin: *');
 
-$server = 'io.adafruit.com';     // change if necessary
-$port = 1883;                     // change if necessary
-$username = 'anhkhoa1408';                   // set your username
-$password = 'aio_DTKt72kp6AzrpxgcsajcmEc3yJoB';                   // set your password
-$client_id = 'phpMQTT'; // make sure this is unique for connecting to sever - you could use uniqid()
+$server = 'io.adafruit.com';
+$port = 1883;
+$username = 'anhkhoa1408';
+$password = 'aio_FrMj27gOUb6JqB1eXtBb8MlOv8DU';
+$client_id = 'publisher';
 
 $mqtt = new Bluerhinos\phpMQTT($server, $port, $client_id);
 if (!$mqtt->connect(true, NULL, $username, $password)) {
@@ -15,17 +14,18 @@ if (!$mqtt->connect(true, NULL, $username, $password)) {
 
 $mqtt->debug = true;
 
-$topics['anhkhoa1408/feeds/bk-iot-relay'] = array('qos' => 0, 'function' => 'procMsg');
+$topics['anhkhoa1408/feeds/bk-iot-soil'] = array('qos' => 0, 'function' => '__direct_return_message__');
 $mqtt->subscribe($topics, 0);
-
-while ($mqtt->proc()) {
+$msg_return = $mqtt->proc();
+while (is_bool($msg_return)) {
+	$msg_return = $mqtt->proc();
 }
 
 $mqtt->close();
 
-function procMsg($topic, $msg)
+showMessage($msg_return);
+
+function showMessage($msg)
 {
-	// echo 'Msg Recieved: ' . date('r') . "\n";
-	// echo "Topic: {$topic}\n";
 	echo "$msg\n";
 }

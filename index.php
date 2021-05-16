@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SprinklerIOT</title>
+    <title>Sprinkler IOT</title>
     <link rel="stylesheet" href="/assets/fontawesome-free-5.15.3-web/fontawesome-free-5.15.3-web/css/all.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/src/gauge.css">
@@ -60,13 +60,13 @@
                 </div>
 
             </div>
-            <script src="src/gauge.js"></script>
+
 
             <!-- button ON/OFF -->
             <div class="toggle">
                 <p class="off-switch">OFF</p>
                 <label class="switch">
-                    <input type="checkbox">
+                    <input id="switch-btn" type="checkbox">
                     <span class="slider round"></span>
                 </label>
                 <p class="on-switch">ON</p>
@@ -75,15 +75,58 @@
 
         </div>
 
+        <!-- Get Humidity JSON text from Server AdaFruit -->
+        <script src="/src/gauge.js"></script>
+
         <script>
+            var message;
             $.ajax({
                 url: "Server/subscribe.php",
                 type: 'GET',
                 success: function(data) {
                     console.log(data);
+                    message = JSON.parse(data);
+                    const humidElement = document.querySelector(".gauge.gauge-humid");
+                    const tempElement = document.querySelector(".gauge.gauge-temp");
+                    setHumidValue(humidElement, message.humid);
+                    setTempValue(tempElement, message.temp);
+                },
+                error: function() {
+                    console.log("Error");
                 }
             });
         </script>
+
+        <!-- Send Relay JSON text to Server AdaFruit -->
+        <script>
+            var State, buttonState;
+            $(document).ready(function() {
+                $("#switch-btn").click(function() {
+                    State = $('#switch-btn').prop('checked');
+
+                    if (State === true)
+                        buttonState = 1;
+                    else
+                        buttonState = 0;
+
+                    $.ajax({
+                        url: 'Server/publishRelay.php',
+                        type: 'POST',
+                        data: {
+                            state: buttonState
+                        },
+                        success: function() {
+                            console.log("Success");
+                        },
+                        error: function() {
+                            console.log("Error");
+                        }
+                    });
+                })
+            })
+        </script>
+
+
 
     </div>
 </body>

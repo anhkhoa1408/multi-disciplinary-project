@@ -364,8 +364,7 @@ class phpMQTT
      */
     public function print_topics(): void
     {
-        foreach ($this->topics as $key => $value)
-        {
+        foreach ($this->topics as $key => $value) {
             $this->_debugMessage("Topics: " . $key . " " . json_encode($value));
         }
     }
@@ -504,7 +503,7 @@ class phpMQTT
                 if (is_callable($top['function'])) {
                     call_user_func($top['function'], $topic, $msg);
                 } else {
-                    $this->_errorMessage('Message received on topic ' . $topic. ' but function is not callable.');
+                    $this->_errorMessage('Message received on topic ' . $topic . ' but function is not callable.');
                 }
             }
         }

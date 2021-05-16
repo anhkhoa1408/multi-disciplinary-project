@@ -42,9 +42,9 @@
     background-color: #fff;
   }
   
-  /* input:focus + .slider {
+  input:focus + .slider {
     box-shadow: 0 0 1px #000;
-  } */
+  }
   
   input:checked + .slider:before {
     -webkit-transform: translateX(46px);
