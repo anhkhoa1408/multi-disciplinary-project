@@ -112,6 +112,11 @@ body {
     right: 15%;
 }
 
+.temperature p,
+.humidity p {
+    padding-top: 14px;
+    font-size: 25px;
+}
 
 /*Function: content slider*/
 

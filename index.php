@@ -86,10 +86,11 @@
                 success: function(data) {
                     console.log(data);
                     message = JSON.parse(data);
+                    var dataArray = message.data.split('-');
                     const humidElement = document.querySelector(".gauge.gauge-humid");
                     const tempElement = document.querySelector(".gauge.gauge-temp");
-                    setHumidValue(humidElement, message.humid);
-                    setTempValue(tempElement, message.temp);
+                    setTempValue(tempElement, dataArray[0]);
+                    setHumidValue(humidElement, dataArray[1]);
                 },
                 error: function() {
                     console.log("Error");
@@ -110,7 +111,7 @@
                         buttonState = 0;
 
                     $.ajax({
-                        url: 'Server/publishRelay.php',
+                        url: 'Server/publish-Relay.php',
                         type: 'POST',
                         data: {
                             state: buttonState
