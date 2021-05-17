@@ -125,10 +125,7 @@
                     });
                 })
             })
-        </script>
-
-
-
+        </script>  
     </div>
 </body>
 
