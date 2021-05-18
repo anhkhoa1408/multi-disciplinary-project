@@ -20,7 +20,7 @@
             <img src="" alt="" class="logo">
 
             <div class="sign-out">
-                <a href="/html/login.html"><i class="fas fa-sign-out-alt"></i></a>
+                <a href="/login.php"><i class="fas fa-sign-out-alt"></i></a>
             </div>
         </div>
 
@@ -28,8 +28,8 @@
         <div id="nav-section">
             <ul class="nav">
                 <li><a href="/index.php" class="home-page"><i class="btn fas fa-home"></i></a>Home</li>
-                <li><a href="/html/setinfo.html" class="set-info-page"><i class="btn fas fa-sliders-h"></i></a>Parameter</li>
-                <li><a href="/html/settime.html" class="set-time-page"><i class="btn far fa-clock"></i></a>Time</li>
+                <li><a href="/setinfo.php" class="set-info-page"><i class="btn fas fa-sliders-h"></i></a>Parameter</li>
+                <li><a href="/settime.php" class="set-time-page"><i class="btn far fa-clock"></i></a>Time</li>
             </ul>
         </div>
 
