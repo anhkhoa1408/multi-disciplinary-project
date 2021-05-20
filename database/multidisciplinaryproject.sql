@@ -67,8 +67,8 @@ CREATE TABLE `parameter` (
 
 CREATE TABLE `timesetting` (
   `ID` int NOT NULL,
-  `start_time` timestamp NOT NULL,
-  `end_time` timestamp NOT NULL
+  `start_time` int NOT NULL,
+  `end_time` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --

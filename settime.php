@@ -66,6 +66,36 @@
         </div>
         <script src="/src/settime.js"></script>
 
+        <script>
+
+            var start_time = document.querySelector(".start-slider").querySelector("input").value;
+            var end_time = document.querySelector(".end-slider").querySelector("input").value;
+
+            if (start_time >= end_time)
+            {
+                alert("Bad timming!");
+            }
+            else
+            {
+                await $.ajax({    
+                    url: 'settime_server.php',
+                    type: 'GET',
+                    data: {
+                        stime: start_time, 
+                        etime: end_time
+                    },
+                    cache: false,
+                    success: function() {
+                        alert('Login success');
+                    },
+                    error: function() {
+                        console.log('Error');
+                    }
+                });
+            }
+
+        </script>
+
     </div>
 </body>
 
