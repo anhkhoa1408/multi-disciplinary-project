@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,31 +39,33 @@
 
         <!-- Content section -->
         <div id="content-section">
+            <div class="gauge-container">
+                <div class="gauge gauge-temp">
+                    <div class="gauge__body_temp">
+                        <div class="gauge__fill_temp"></div>
+                        <div class="gauge__cover_temp"></div>
+                    </div>
 
-            <div class="gauge gauge-temp">
-                <div class="gauge__body_temp">
-                    <div class="gauge__fill_temp"></div>
-                    <div class="gauge__cover_temp"></div>
+                    <div class="temperature">
+                        <p>Temperature</p>
+                    </div>
+
+
                 </div>
 
-                <div class="temperature">
-                    <p>Temperature</p>
+                <div class="gauge gauge-humid">
+                    <div class="gauge__body_humid">
+                        <div class="gauge__fill_humid"></div>
+                        <div class="gauge__cover_humid"></div>
+                    </div>
+
+                    <div class="humidity">
+                        <p>Humidity</p>
+                    </div>
+
                 </div>
-
-
             </div>
 
-            <div class="gauge gauge-humid">
-                <div class="gauge__body_humid">
-                    <div class="gauge__fill_humid"></div>
-                    <div class="gauge__cover_humid"></div>
-                </div>
-
-                <div class="humidity">
-                    <p>Humidity</p>
-                </div>
-
-            </div>
 
 
             <!-- button ON/OFF -->
@@ -79,24 +85,41 @@
         <script src="/src/gauge.js"></script>
 
         <script>
-            var message;
-            $.ajax({
-                url: "Server/subscribe.php",
-                type: 'GET',
-                success: function(data) {
-                    console.log(data);
-                    message = JSON.parse(data);
-                    var dataArray = message.data.split('-');
-                    const humidElement = document.querySelector(".gauge.gauge-humid");
-                    const tempElement = document.querySelector(".gauge.gauge-temp");
-                    setTempValue(tempElement, dataArray[0]);
-                    setHumidValue(humidElement, dataArray[1]);
-                },
-                error: function() {
-                    console.log("Error");
-                }
-            });
+            function setParam() {
+                var message;
+                $.ajax({
+                    url: "Server/subscribe.php",
+                    type: 'GET',
+                    success: function(data) {
+                        console.log(data);
+                        message = JSON.parse(data);
+                        var dataArray = message.data.split('-');
+                        const humidElement = document.querySelector(".gauge.gauge-humid");
+                        const tempElement = document.querySelector(".gauge.gauge-temp");
+                        setTempValue(tempElement, dataArray[0]);
+                        setHumidValue(humidElement, dataArray[1]);
+
+                        $.ajax({
+                            url: 'insert-param.php',
+                            type: 'POST',
+                            data: {
+                                temperature: dataArray[0],
+                                humidity: dataArray[1]
+                            },
+                            success: function(msg) {
+                                console.log(msg);
+                            }
+                        })
+                    },
+                    error: function() {
+                        console.log("Error");
+                    }
+                });
+            }
+            setParam();
+            // window.setInterval(setParam,250000);
         </script>
+
 
         <!-- Send Relay JSON text to Server AdaFruit -->
         <script>
@@ -118,6 +141,7 @@
                         },
                         success: function() {
                             console.log("Success");
+                            localStorage.setItem('btnState', buttonState);
                         },
                         error: function() {
                             console.log("Error");
@@ -125,7 +149,10 @@
                     });
                 })
             })
-        </script>  
+        </script>
+
+        <!-- Load BUTTON ON/OFF state from user -->
+        <script src="/set-btn-state.js"></script>
     </div>
 </body>
 
