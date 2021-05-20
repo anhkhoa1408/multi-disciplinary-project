@@ -1,5 +1,5 @@
 <?php
-    session_start();
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -11,11 +11,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SprinklerIOT</title>
     <link rel="stylesheet" href="/assets/fontawesome-free-5.15.3-web/fontawesome-free-5.15.3-web/css/all.css">
-    <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/src/gauge.css">
     <link rel="stylesheet" href="/src/toggle.css">
     <link rel="stylesheet" href="/src/settime.css">
-
+    <script src="/src/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
@@ -44,9 +44,9 @@
         <!--Id: Range-slider ----------------------------------------------------------------------------->
         <!--Note: Set Time---------------------------------------------------------------------------------->
         <div id="content-section">
-            
+
             <!-- <p>Time Range: <span class="slider-time">10:00 AM</span> - <span class="slider-time2">12:00 PM</span></p> -->
-            
+
             <div class="container start">
                 <div class="length range__slider start-slider">
                     <div class="length__title field-title" data-length='12:00'>Start Time:</div>
@@ -61,39 +61,39 @@
                 </div>
             </div>
 
-            <button type="button" class="button set-time-btn" onclick="alert('Hello world!')">Submit!</button>
-        
+            <button type="button" class="button set-time-btn" onclick="submitTime()">Submit!</button>
+
         </div>
         <script src="/src/settime.js"></script>
 
         <script>
+            async function submitTime() {
+                var start_time = document.querySelectorAll(".length__title.field-title")[0].getAttribute('data-length');
+                var end_time = document.querySelectorAll(".length__title.field-title")[1].getAttribute('data-length');
+                console.log(start_time);
 
-            var start_time = document.querySelector(".start-slider").querySelector("input").value;
-            var end_time = document.querySelector(".end-slider").querySelector("input").value;
-
-            if (start_time >= end_time)
-            {
-                alert("Bad timming!");
+                if (start_time >= end_time) {
+                    alert("Bad timming!");
+                } else {
+                    await $.ajax({
+                        url: 'settime_server.php',
+                        type: 'POST',
+                        data: {
+                            stime: start_time,
+                            etime: end_time
+                        },
+                        cache: false,
+                        success: function(message) {
+                            console.log(message)
+                            if (message == 1)
+                                alert('Success');
+                        },
+                        error: function() {
+                            console.log('Error');
+                        }
+                    });
+                }
             }
-            else
-            {
-                await $.ajax({    
-                    url: 'settime_server.php',
-                    type: 'GET',
-                    data: {
-                        stime: start_time, 
-                        etime: end_time
-                    },
-                    cache: false,
-                    success: function() {
-                        alert('Login success');
-                    },
-                    error: function() {
-                        console.log('Error');
-                    }
-                });
-            }
-
         </script>
 
     </div>

@@ -2,10 +2,10 @@
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: May 17, 2021 at 03:53 AM
--- Server version: 8.0.24
--- PHP Version: 8.0.5
+-- Máy chủ: localhost
+-- Thời gian đã tạo: Th5 20, 2021 lúc 11:52 AM
+-- Phiên bản máy phục vụ: 8.0.24
+-- Phiên bản PHP: 8.0.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `multidisciplinaryproject`
+-- Cơ sở dữ liệu: `multidisciplinaryproject`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `accounts`
+-- Cấu trúc bảng cho bảng `accounts`
 --
 
 CREATE TABLE `accounts` (
@@ -33,10 +33,18 @@ CREATE TABLE `accounts` (
   `PassWord` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `accounts`
+--
+
+INSERT INTO `accounts` (`ID`, `UserName`, `PassWord`) VALUES
+(14, 'khoa.nguyen1408', 'Anhkhoanguyen123'),
+(15, 'khoa.nguyen1408', 'Anhkhoanguyen123');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `minimumparam`
+-- Cấu trúc bảng cho bảng `minimumparam`
 --
 
 CREATE TABLE `minimumparam` (
@@ -49,7 +57,7 @@ CREATE TABLE `minimumparam` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `parameter`
+-- Cấu trúc bảng cho bảng `parameter`
 --
 
 CREATE TABLE `parameter` (
@@ -62,70 +70,77 @@ CREATE TABLE `parameter` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `timesetting`
+-- Cấu trúc bảng cho bảng `timesetting`
 --
 
 CREATE TABLE `timesetting` (
   `ID` int NOT NULL,
-  `start_time` int NOT NULL,
-  `end_time` int NOT NULL
+  `start_time` time NOT NULL,
+  `end_time` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Indexes for dumped tables
+-- Đang đổ dữ liệu cho bảng `timesetting`
+--
+
+INSERT INTO `timesetting` (`ID`, `start_time`, `end_time`) VALUES
+(1, '05:55:00', '12:00:00');
+
+--
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `accounts`
+-- Chỉ mục cho bảng `accounts`
 --
 ALTER TABLE `accounts`
   ADD PRIMARY KEY (`ID`,`UserName`);
 
 --
--- Indexes for table `minimumparam`
+-- Chỉ mục cho bảng `minimumparam`
 --
 ALTER TABLE `minimumparam`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `parameter`
+-- Chỉ mục cho bảng `parameter`
 --
 ALTER TABLE `parameter`
   ADD PRIMARY KEY (`ID`,`Time_Receive`);
 
 --
--- Indexes for table `timesetting`
+-- Chỉ mục cho bảng `timesetting`
 --
 ALTER TABLE `timesetting`
   ADD PRIMARY KEY (`ID`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `accounts`
+-- AUTO_INCREMENT cho bảng `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `minimumparam`
+-- AUTO_INCREMENT cho bảng `minimumparam`
 --
 ALTER TABLE `minimumparam`
   MODIFY `ID` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `parameter`
+-- AUTO_INCREMENT cho bảng `parameter`
 --
 ALTER TABLE `parameter`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `timesetting`
+-- AUTO_INCREMENT cho bảng `timesetting`
 --
 ALTER TABLE `timesetting`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
