@@ -76,7 +76,7 @@ session_start();
                     alert("Bad timming!");
                 } else {
                     await $.ajax({
-                        url: 'settime_server.php',
+                        url: 'settime-server.php',
                         type: 'POST',
                         data: {
                             stime: start_time,

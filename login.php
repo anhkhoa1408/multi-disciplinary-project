@@ -52,11 +52,15 @@
                 <label for="username"><b>User Name</b></label>
                 <input id="sign-up-username" type="text" placeholder="Enter User Name" name="username" required>
 
+                <label for="aiokey"><b>AIO Key</b></label>
+                <input id="aio-key-input" type="text" placeholder="Enter AIO Key" name="aiokey" required>
+
                 <label for="psw"><b>Password</b></label>
                 <input id="sign-up-pw" type="password" placeholder="Enter Password" name="psw" required>
 
                 <label for="psw-repeat"><b>Repeat Password</b></label>
                 <input id="sign-up-pw-repeat" type="password" placeholder="Repeat Password" name="psw-repeat" required>
+
                 <div id="sign-up-err" style="color: red; text-align:left"></div>
                 <div class="clearfix">
                     <button type="button" onclick="document.getElementById('sign-up-form').style.display='none'" class="cancelbtn">Cancel</button>
@@ -70,7 +74,7 @@
         <script>
             async function validateLogin() {
                 var username = $('#username-input').val();
-                var password = $('#password-input').val();
+                var password = $('#password-input').val();         
                 var userNameErr = $('#username-error');
                 var passwordErr = $('#password-error');
 
@@ -91,7 +95,7 @@
                     type: 'POST',
                     data: {
                         user: username, 
-                        pass: password
+                        pass: password,
                     },
                     cache: false,
                     success: function(message) {
@@ -114,8 +118,25 @@
             async function validateSignUp() {
                 var username = $('#sign-up-username').val();
                 var password = $('#sign-up-pw').val();
+                var key = $('#aio-key-input').val();
                 var passwordRepeat = $('#sign-up-pw-repeat').val();
                 var signUpErr = $('#sign-up-err');
+                if (username == '') {
+                    $('#sign-up-err').prop('innerHTML', 'Please enter User Name!');
+                    return;
+                }
+
+                if (password == '') {
+                    $('#sign-up-err').prop('innerHTML', 'Please enter Password!');
+                    return;
+                }
+
+                if (key == '') {
+                    $('#sign-up-err').prop('innerHTML', 'Please enter AIO Key!');
+                    return;
+                }
+
+
                 if (password !== passwordRepeat) {
                     $('#sign-up-err').prop('innerHTML', 'Password and Repeat Password must be same')
                     return;
@@ -126,7 +147,8 @@
                     type: 'POST',
                     data: {
                         user: username,
-                        pass: password
+                        pass: password,
+                        key: key
                     },
                     success: function(message) {
                         console.log(message)

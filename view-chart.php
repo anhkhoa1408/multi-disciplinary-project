@@ -64,7 +64,7 @@ session_start();
 
         </div>
 
-        <script src="/line-chart.js"> </script>
+        <script src="/src/line-chart.js"> </script>
 
     </div>
 </body>

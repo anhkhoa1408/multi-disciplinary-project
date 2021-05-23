@@ -154,7 +154,7 @@ session_start();
         </script>
 
         <!-- Load BUTTON ON/OFF state from user -->
-        <script src="/set-btn-state.js"></script>
+        <script src="/src/set-btn-state.js"></script>
     </div>
 </body>
 

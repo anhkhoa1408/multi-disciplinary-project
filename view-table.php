@@ -1,7 +1,14 @@
 <?php
-include "connect-database.php";
-$query = "SELECT * FROM `parameter`";
-$result = $conn->query($query);
+    session_start();
+    include "connect-database.php";
+    $user = $_SESSION['user'];
+    $findUserID = "SELECT `ID` FROM `accounts` WHERE `UserName` = '$user'";
+    $result = $conn->query($findUserID) or die($conn->error);
+    $row = $result->fetch_assoc();
+    $userID = $row['ID'];
+    
+    $query = "SELECT * FROM `parameter` WHERE `userID` = '$userID'";
+    $result = $conn->query($query);
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +55,6 @@ $result = $conn->query($query);
                 <table id="temp_humid_data" class="uk-table uk-table-hover uk-table-striped">
                     <thead>
                         <tr>
-                            <td>ID</td>
                             <td>Temperature</td>
                             <td>Humidity</td>
                             <td>Time</td>
@@ -57,11 +63,10 @@ $result = $conn->query($query);
                     <?php
                         while ($row = mysqli_fetch_array($result)) {
                             echo '  
-                                <tr>  
-                                        <td>' . $row["ID"] . '</td>  
+                                <tr>   
                                         <td>' . $row["Temperature"] . '</td>  
                                         <td>' . $row["Humidity"] . '</td>  
-                                        <td>' . $row["Time_Receive"] . '</td>  
+                                        <td>' . $row["Time_Receive"] . '</td> 
                                 </tr>  
                                 ';
                         }
