@@ -2,28 +2,27 @@
     include 'connect-database.php';
     
     // Get all user
-    $get_all_user = "SELECT `ID`, `UserName`, `AIOKey` FROM `accounts`";
+    $get_all_user = "SELECT `UserName`, `AIOKey` FROM `accounts`";
     $user_query_result = $conn->query($get_all_user) or die($conn->error);
     $all_user = $user_query_result->fetch_all(MYSQLI_NUM);
 
     // For each user, get humid-temp feed data and store in db
     foreach($all_user as $index => $user) {
-        get_temp_humid($user["ID"], $user["UserName"], $user["AIOKey"]);
+        get_temp_humid($user["UserName"], $user["AIOKey"]);
     }
 
     // Function to get feed data
-    function get_temp_humid($user_id, $user, $aiokey)
+    function get_temp_humid($user, $aiokey)
     {
         // Init curl object
         $ch = curl_init();
     
         // Init url
-        $url = "https://io.adafruit.com/api/v2/{username}/feeds/bk-iot-temp-humid/data";
+        $url = "https://io.adafruit.com/api/v2/{username}/feeds/bk-iot-temp-humid/data?limit=3";
         $url = str_replace("{username}", $user, $url);
         $TIME_INTERVAL = 3; // hours
-        $start_time = date(DATE_ISO8601, time() + (7 - $TIME_INTERVAL) * 60 * 60);
-        $end_time = date(DATE_ISO8601, time() + 7 * 60 * 60);
-        $url .= "?start_time=" . $start_time . "&end_time=" . $end_time;
+        $start_time = date(DATE_ISO8601, time() - $TIME_INTERVAL * 60 * 60);
+        $url .= "?start_time=" . $start_time;
 
     
         $http_header =
@@ -74,17 +73,17 @@
             // Key: expiration -       Value: 2021-06-22T07:42:13Z
             
             // Find id
-            $id = $result->id;
-            $id_query = "SELECT `ID` FROM `parameter` WHERE `ID`='$id'";
-            $result = $conn->query($id_query) or die($conn->error);
-            if ($result) continue;
+            // $id = $result->id;
+            // $id_query = "SELECT `ID` FROM `parameter` WHERE `ID`='$id'";
+            // $result = $conn->query($id_query) or die($conn->error);
+            // if ($result) continue;
             
             // Add to db
             $value = json_decode($result->value)->data;
             $temp = strtok($value, "-");
             $humidity = strtok("-");
             $time = date("Y-m-d H:i:s", strtotime($result->created_at));
-            $sql = "INSERT INTO `parameter` (`ID`, `Temperature`, `Humidity`, `Time_Receive`, `userID`) VALUES ('$id', '$temp', '$humidity', '$time', '$user_id')";
+            $sql = "INSERT INTO `parameter` (`Temperature`, `Humidity`, `Time_Receive`, `UserName`) VALUES ('$temp', '$humidity', '$time', '$user')";
             $result = $conn->query($sql) or die($conn->error);
             if ($result) {
                 echo "ID: " . $id . " is added.\n";
