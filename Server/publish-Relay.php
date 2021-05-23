@@ -5,7 +5,7 @@ require('phpMQTT.php');
 $server = 'io.adafruit.com';
 $port = 1883;
 $username = 'anhkhoa1408';
-$password = 'aio_cXNu34JH7ipvyPQteupHffsv4awy';
+$password = 'aio_loow73QGrlxljrKsJ2GbeMOd2mBq';
 $client_id = 'subscriber';
 
 $mqtt = new Bluerhinos\phpMQTT($server, $port, $client_id);

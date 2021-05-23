@@ -347,7 +347,6 @@ body {
 /* Tables section */
 #content-section .tables-container {
     background-color: #fff;
-    /* border: #ccc 5px solid; */
     padding: 15px;
     width: 96%;
     position: absolute;
@@ -356,3 +355,62 @@ body {
     left: 2%
 }
 
+
+/* Chart section */
+
+.chart-container {
+    position: absolute;
+    width: 45%;
+    height: 65%;
+    top: 4%;
+    margin: 10px 0px;
+
+}
+
+.temp.chart-container {
+    left: 52%;
+}
+
+.humid.chart-container {
+    left: 3%;
+}
+
+.chart-container p {
+    display: block;
+    color: #1e1ca3;
+    font-size: 20px;
+    font-weight: bold;
+    display: inline-block; 
+}
+
+.header-container {
+    background-color: #f8f9fc;
+    padding: 20px;
+    border: 1px groove;
+    border-radius: 3px;  
+    
+}
+
+.header-container .export-btn {
+    float: right;
+}
+
+.chart {
+    background-color: #fff;
+    padding: 20px;
+    /* border-radius: 3px; */
+}
+
+.export-btn {
+    background-color:teal ;
+    padding: 6px 20px;
+    border: 1px solid;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.export-btn:hover {
+    background-color: #ccc;
+}

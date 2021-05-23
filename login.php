@@ -13,8 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign in</title>
     <link rel="stylesheet" href="/assets/fontawesome-free-5.15.3-web/fontawesome-free-5.15.3-web/css/all.css">
-    <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="src/signup.css">
+    <link rel="stylesheet" href="/style.css">
     <script src="/src/jquery-3.6.0.min.js"></script>
 </head>
 <body>
