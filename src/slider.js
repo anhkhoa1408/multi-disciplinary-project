@@ -1,5 +1,5 @@
 var slider = document.getElementById("Temperature");
-var output = document.getElementById("demo");
+var output = document.getElementById("tmp");
 output.innerHTML = slider.value; // Display the default slider value
 
 // Update the current slider value (each time you drag the slider handle)
@@ -8,7 +8,7 @@ slider.oninput = function() {
 }
 
 var sliderhumid = document.getElementById("Humidity");
-var outputhumid = document.getElementById("humid");
+var outputhumid = document.getElementById("hmd");
 outputhumid.innerHTML = sliderhumid.value;
 
 sliderhumid.oninput = function() {

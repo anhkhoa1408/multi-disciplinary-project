@@ -1,13 +1,14 @@
 <?php
     session_start();
     include "connect-database.php";
+
     $user = $_SESSION['user'];
-    $findUserID = "SELECT `ID` FROM `accounts` WHERE `UserName` = '$user'";
-    $result = $conn->query($findUserID) or die($conn->error);
-    $row = $result->fetch_assoc();
-    $userID = $row['ID'];
+    // $findUserID = "SELECT `ID` FROM `accounts` WHERE `UserName` = '$user'";
+    // $result = $conn->query($findUserID) or die($conn->error);
+    // $row = $result->fetch_assoc();
+    // $userID = $row['ID'];
     
-    $query = "SELECT * FROM `parameter` WHERE `userID` = '$userID'";
+    $query = "SELECT * FROM `parameter` WHERE `UserName` = '$user'";
     $result = $conn->query($query);
 ?>
 
@@ -58,6 +59,7 @@
                             <td>Temperature</td>
                             <td>Humidity</td>
                             <td>Time</td>
+                            <!-- <td>User Name</td> -->
                         </tr>
                     </thead>
                     <?php
@@ -66,7 +68,7 @@
                                 <tr>   
                                         <td>' . $row["Temperature"] . '</td>  
                                         <td>' . $row["Humidity"] . '</td>  
-                                        <td>' . $row["Time_Receive"] . '</td> 
+                                        <td>' . $row["Time_Receive"] . '</td>
                                 </tr>  
                                 ';
                         }

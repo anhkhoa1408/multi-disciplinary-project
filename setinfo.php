@@ -1,5 +1,5 @@
 <?php
-    session_start();
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/src/gauge.css">
     <link rel="stylesheet" href="/src/slider.css">
     <link rel="stylesheet" href="/style.css">
+    <script src="/src/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -56,14 +57,14 @@
 
                 <div class="gauge gauge-temp-number">
                     <div class="temperature-number">
-                        <p><span id="demo"></span>°C</p>
+                        <p><span id="tmp">0</span>°C</p>
                     </div>
                 </div>
             </div>
 
             <!--Humidity-->
             <div class="slidecontainer">
-                <input type="range" min="20" max="90" value="0" class="slider-humidity" id="Humidity">
+                <input type="range" min="20" max="90" value="20" class="slider-humidity" id="Humidity">
 
                 <div class="gauge gauge-humid">
                     <div class="humidity">
@@ -73,14 +74,43 @@
 
                 <div class="gauge gauge-humid-number">
                     <div class="humidity-number">
-                        <p><span id="humid"></span>%</p>
+                        <p><span id="hmd">20</span>%</p>
                     </div>
                 </div>
             </div>
 
-            <button type="button" class="set-info-btn" onclick="alert('Hello world!')">Submit!</button>
+            <button type="button" class="set-info-btn" onclick="submitInfo()">Submit!</button>
 
-            <script src="/src/slider.js"></script>
         </div>
+
+        <script src="/src/slider.js"></script>
+
+        <script>
+            async function submitInfo() {
+                var temperature = $('#tmp').prop('innerHTML');
+                console.log(temperature);
+                var humidity = $('#hmd').prop('innerHTML');
+
+                await $.ajax({
+                    url: 'setinfo-server.php',
+                    type: 'POST',
+                    data: {
+                        temp: temperature,
+                        humid: humidity
+                    },
+                    cache: false,
+                    success: function(message) {
+                        console.log(message)
+                        if (message == 1)
+                            alert('Success');
+                    },
+                    error: function() {
+                        console.log('Error');
+                    }
+                });
+            }
+        </script>
+
+        
     </div>
 </body>

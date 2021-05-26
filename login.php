@@ -91,7 +91,7 @@
                 userNameErr.prop('innerHTML', '');
 
                 await $.ajax({    
-                    url: 'validate.php',
+                    url: 'validate-login.php',
                     type: 'POST',
                     data: {
                         user: username, 
