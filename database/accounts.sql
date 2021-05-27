@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 23, 2021 at 12:32 PM
+-- Generation Time: May 27, 2021 at 12:22 PM
 -- Server version: 8.0.24
 -- PHP Version: 8.0.5
 
@@ -28,7 +28,6 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `accounts` (
-  `ID` int NOT NULL,
   `UserName` varchar(50) NOT NULL,
   `AIOKey` varchar(40) NOT NULL,
   `PassWord` varchar(50) NOT NULL
@@ -38,9 +37,8 @@ CREATE TABLE `accounts` (
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`ID`, `UserName`, `AIOKey`, `PassWord`) VALUES
-(3, 'khoa.nguyen1408', 'aio_nnTc48vgd4kwi5HGcQGQwWHNkoRj', 'Anhkhoanguyen123'),
-(4, 'testAccount', 'aio_nnTc48vgd4kwi5HGcQGQwWHNkoRj', 'abcd123');
+INSERT INTO `accounts` (`UserName`, `AIOKey`, `PassWord`) VALUES
+('khoa.nguyen1408', 'aio_bUAd97nQQdaIVzNRmAQx4MIOszNr', 'Anhkhoa123');
 
 --
 -- Indexes for dumped tables
@@ -50,17 +48,7 @@ INSERT INTO `accounts` (`ID`, `UserName`, `AIOKey`, `PassWord`) VALUES
 -- Indexes for table `accounts`
 --
 ALTER TABLE `accounts`
-  ADD PRIMARY KEY (`ID`,`UserName`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `accounts`
---
-ALTER TABLE `accounts`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  ADD PRIMARY KEY (`UserName`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

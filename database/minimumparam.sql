@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 23, 2021 at 12:32 PM
+-- Generation Time: May 27, 2021 at 12:23 PM
 -- Server version: 8.0.24
 -- PHP Version: 8.0.5
 
@@ -32,8 +32,18 @@ CREATE TABLE `minimumparam` (
   `Temperature` int NOT NULL,
   `Humidity` int NOT NULL,
   `Created` datetime NOT NULL,
-  `userID` int NOT NULL
+  `UserName` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `minimumparam`
+--
+
+INSERT INTO `minimumparam` (`ID`, `Temperature`, `Humidity`, `Created`, `UserName`) VALUES
+(2, 0, 20, '2021-05-26 20:54:15', 'khoa.nguyen1408'),
+(3, 0, 20, '2021-05-26 20:55:08', 'khoa.nguyen1408'),
+(4, 0, 20, '2021-05-26 21:04:06', 'khoa.nguyen1408'),
+(5, 9, 20, '2021-05-26 21:04:11', 'khoa.nguyen1408');
 
 --
 -- Indexes for dumped tables
@@ -44,7 +54,7 @@ CREATE TABLE `minimumparam` (
 --
 ALTER TABLE `minimumparam`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `userID` (`userID`);
+  ADD KEY `UserName` (`UserName`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -54,7 +64,7 @@ ALTER TABLE `minimumparam`
 -- AUTO_INCREMENT for table `minimumparam`
 --
 ALTER TABLE `minimumparam`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -64,7 +74,7 @@ ALTER TABLE `minimumparam`
 -- Constraints for table `minimumparam`
 --
 ALTER TABLE `minimumparam`
-  ADD CONSTRAINT `minimumparam_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `accounts` (`ID`);
+  ADD CONSTRAINT `minimumparam_ibfk_1` FOREIGN KEY (`UserName`) REFERENCES `accounts` (`UserName`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
