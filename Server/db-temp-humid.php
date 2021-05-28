@@ -18,11 +18,11 @@
         $ch = curl_init();
     
         // Init url
-        $url = "https://io.adafruit.com/api/v2/{username}/feeds/bk-iot-temp-humid/data?limit=3";
+        $url = "https://io.adafruit.com/api/v2/{username}/feeds/bk-iot-temp-humid/data?limit=1";
         $url = str_replace("{username}", $user, $url);
-        $TIME_INTERVAL = 3; // hours
-        $start_time = date(DATE_ISO8601, time() - $TIME_INTERVAL * 60 * 60);
-        $url .= "?start_time=" . $start_time;
+        // $TIME_INTERVAL = 3; // hours
+        // $start_time = date(DATE_ISO8601, time() - $TIME_INTERVAL * 60 * 60);
+        // $url .= "?start_time=" . $start_time;
 
     
         $http_header =
@@ -54,6 +54,8 @@
         // For each result, check duplicate then add to db
         foreach($results as $result)
         {
+            if (count($result) == 1)
+                continue;
             // Result structure
             // Key: id -               Value: string
             // Key: value -            Value: string

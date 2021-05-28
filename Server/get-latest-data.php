@@ -1,11 +1,12 @@
 <?php
-    $config = parse_ini_file(".config");
-    $user = $config["CurrentUser"];
+    session_start();
+    $curr_user = $_SESSION['user'];
 
-    include "connect-database.php";
-    $findUser = "SELECT `UserName`, `AIOKey` FROM `accounts` WHERE `UserName` = '$user'";
+    include "../connect-database.php";
+    $findUser = "SELECT * FROM `accounts` WHERE `UserName`='$curr_user'";
     $result = $conn->query($findUser) or die($conn->error);
     $row = $result->fetch_assoc();
+    
     
     // Init curl object
     $ch = curl_init();

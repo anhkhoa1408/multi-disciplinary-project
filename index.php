@@ -87,6 +87,29 @@ session_start();
         <script src="/src/gauge.js"></script>
 
         <script>
+            setParam();
+
+            async function setParam() {
+                var message;
+                await $.ajax({
+                    url: "Server/get-latest-data.php",
+                    type: 'GET',
+                    success: function(data) {
+                        var dataArray = data.split('-');
+                        const humidElement = document.querySelector(".gauge.gauge-humid");
+                        const tempElement = document.querySelector(".gauge.gauge-temp");
+                        setTempValue(tempElement, dataArray[0]);
+                        setHumidValue(humidElement, dataArray[1]);
+                    },
+                    error: function() {
+                        console.log("Error");
+                    }
+                });
+            }
+            window.setInterval(setParam,30000);
+        </script>
+
+        <!-- <script>
             async function setParam() {
                 var message;
                 await $.ajax({
@@ -119,8 +142,8 @@ session_start();
                 });
             }
             setParam();
-            // window.setInterval(setParam,250000);
-        </script>
+            window.setInterval(setParam,250000);
+        </script> -->
 
 
         <!-- Send Relay JSON text to Server AdaFruit -->
