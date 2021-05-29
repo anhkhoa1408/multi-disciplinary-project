@@ -86,7 +86,11 @@
     function check_time($username)
     {
         include '../connect-database.php';
+<<<<<<< HEAD
         $get_all_time = "SELECT `start_time`, `end_time`, MAX(`ID`) AS 'id' FROM `timesetting` WHERE `UserName`='$username'";
+=======
+        $get_all_time = "SELECT `start_time`, `end_time` FROM `timesetting` WHERE `UserName`='$username'";
+>>>>>>> 29b03abfbb66c9a2f9c2cf5abf834c351decd55f
         $time_query_result = $conn->query($get_all_time) or die($conn->error);
         $all_time = $time_query_result->fetch_all(MYSQLI_ASSOC);
         foreach ($all_time as $index => $time)
