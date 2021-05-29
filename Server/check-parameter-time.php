@@ -1,11 +1,11 @@
 <?php
 
-    include 'connect-database.php';
+    include '../connect-database.php';
         
     // Get all user
     $get_all_user = "SELECT `UserName`, `AIOKey` FROM `accounts`";
     $user_query_result = $conn->query($get_all_user) or die($conn->error);
-    $all_user = $user_query_result->fetch_all(MYSQLI_NUM);
+    $all_user = $user_query_result->fetch_all(MYSQLI_ASSOC);
 
     class Relay
     {
@@ -75,7 +75,7 @@
         $results = json_decode($response);
         foreach($results as $result)
         {
-            if (count($result) == 1)
+            if (count((array)$result) == 1)
                 continue;
 
             $value = json_decode($result->value)->data;
@@ -85,9 +85,10 @@
 
     function check_time($username)
     {
+        include '../connect-database.php';
         $get_all_time = "SELECT `start_time`, `end_time` FROM `timesetting` WHERE `UserName`='$username'";
         $time_query_result = $conn->query($get_all_time) or die($conn->error);
-        $all_time = $time_query_result->fetch_all(MYSQLI_NUM);
+        $all_time = $time_query_result->fetch_all(MYSQLI_ASSOC);
         foreach ($all_time as $index => $time)
         {
             if (time() >= $time['start_time'] and time() <= $time['end_time'])
@@ -98,11 +99,12 @@
 
     function check_para($username)
     {
-        $get_para = "SELECT `Temperature`, `Humidity` MAX(`Time_Receive`) AS `CURR_TIME` FROM `parameter` WHERE `UserName`='$username'";
+        include '../connect-database.php';
+        $get_para = "SELECT `Temperature`, `Humidity`, MAX(`Time_Receive`) AS `CURR_TIME` FROM `parameter` WHERE `UserName`='$username'";
         $para_query_result = $conn->query($get_para) or die($conn->error);
         $para = $para_query_result->fetch_assoc();
         
-        $get_min_para = "SELECT `Temperature`, `Humidity` MAX(`Created`) AS `CURR_TIME` FROM `minimumparam` WHERE `UserName`='$username'";
+        $get_min_para = "SELECT `Temperature`, `Humidity`, MAX(`Created`) AS `CURR_TIME` FROM `minimumparam` WHERE `UserName`='$username'";
         $min_para_query_result = $conn->query($get_min_para) or die($conn->error);
         $min_para = $min_para_query_result->fetch_assoc();
         if ($para['Temperature'] >= $min_para['Temperature'])

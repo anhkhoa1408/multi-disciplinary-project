@@ -1,10 +1,11 @@
 <?php
-    include 'connect-database.php';
+    include '../connect-database.php';
     
     // Get all user
     $get_all_user = "SELECT `UserName`, `AIOKey` FROM `accounts`";
     $user_query_result = $conn->query($get_all_user) or die($conn->error);
-    $all_user = $user_query_result->fetch_all(MYSQLI_NUM);
+    $all_user = $user_query_result->fetch_all(MYSQLI_ASSOC);
+
 
     // For each user, get humid-temp feed data and store in db
     foreach($all_user as $index => $user) {
@@ -14,6 +15,9 @@
     // Function to get feed data
     function get_temp_humid($user, $aiokey)
     {
+        if ($user == 'CSE_BBC1')
+            return;
+        
         // Init curl object
         $ch = curl_init();
     
@@ -54,7 +58,7 @@
         // For each result, check duplicate then add to db
         foreach($results as $result)
         {
-            if (count($result) == 1)
+            if (count((array)$result) == 1)
                 continue;
             // Result structure
             // Key: id -               Value: string
