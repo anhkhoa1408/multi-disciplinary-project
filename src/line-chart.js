@@ -46,14 +46,6 @@ $(document).ready(function () {
 
             var options = {
                 responsive: true,
-                scales: {
-                    xAxes: [{
-                        
-                    }],
-                    yAxes: [{
-
-                    }]
-                },
                 maintainAspectRatio: false,
                 animation: {
                     duration: 1500,

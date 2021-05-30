@@ -351,8 +351,24 @@ body {
     width: 96%;
     position: absolute;
     display: block;
-    top: 5%;
+    top: 6%;
     left: 2%
+}
+
+.dt-button.buttons-collection {
+    display: block;
+    /* font-size: 30px; */
+    margin-left: -140px;
+    margin-top: 44px;
+    margin-bottom: 10px;
+    width: fit-content;
+    color: #fff;
+    background-color: teal !important;
+    background-image: none;
+    border: 1px solid;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 

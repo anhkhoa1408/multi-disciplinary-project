@@ -1,15 +1,15 @@
 <?php
-    session_start();
-    include "connect-database.php";
+session_start();
+include "connect-database.php";
 
-    $user = $_SESSION['user'];
-    // $findUserID = "SELECT `ID` FROM `accounts` WHERE `UserName` = '$user'";
-    // $result = $conn->query($findUserID) or die($conn->error);
-    // $row = $result->fetch_assoc();
-    // $userID = $row['ID'];
-    
-    $query = "SELECT * FROM `parameter` WHERE `UserName` = '$user'";
-    $result = $conn->query($query);
+$user = $_SESSION['user'];
+// $findUserID = "SELECT `ID` FROM `accounts` WHERE `UserName` = '$user'";
+// $result = $conn->query($findUserID) or die($conn->error);
+// $row = $result->fetch_assoc();
+// $userID = $row['ID'];
+
+$query = "SELECT * FROM `parameter` WHERE `UserName` = '$user'";
+$result = $conn->query($query);
 ?>
 
 <!DOCTYPE html>
@@ -22,9 +22,12 @@
     <title>SprinklerIOT</title>
     <link rel="stylesheet" href="/assets/fontawesome-free-5.15.3-web/fontawesome-free-5.15.3-web/css/all.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.css">
     <link rel="stylesheet" href="/style.css">
     <script src="/src/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.js"></script>
+    <!-- <script src="/util.js"></script> -->
 </head>
 
 <body>
@@ -59,28 +62,44 @@
                             <td>Temperature</td>
                             <td>Humidity</td>
                             <td>Time</td>
-                            <!-- <td>User Name</td> -->
                         </tr>
                     </thead>
                     <?php
-                        while ($row = mysqli_fetch_array($result)) {
-                            echo '  
-                                <tr>   
-                                        <td>' . $row["Temperature"] . '</td>  
-                                        <td>' . $row["Humidity"] . '</td>  
-                                        <td>' . $row["Time_Receive"] . '</td>
-                                </tr>  
-                                ';
-                        }
+                    while ($row = mysqli_fetch_array($result)) {
+                        echo '  
+                        <tr>   
+                                <td>' . $row["Temperature"] . '</td>  
+                                <td>' . $row["Humidity"] . '</td>  
+                                <td>' . $row["Time_Receive"] . '</td>
+                        </tr>  
+                        ';
+                    }
                     ?>
                 </table>
             </div>
         </div>
 
+        
+
         <!-- Js for table view -->
         <script>
             $(document).ready(function() {
-                $('#temp_humid_data').DataTable();
+                $('#temp_humid_data').DataTable({
+                    "responsive": true,
+                    "processing": true,
+                    "sAjaxSource": "export-table.php",
+                    "dom": 'lBfrtip',
+                    "buttons": [{
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: [
+                            'excel',
+                            'csv',
+                            'print'
+                        ]
+                    }],
+                    "lengthMenu": [[6, 8, 10, 12], [6, 8, 10, 12]]
+                });
             });
         </script>
 

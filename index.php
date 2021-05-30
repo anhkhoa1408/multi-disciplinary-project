@@ -191,7 +191,7 @@ session_start();
                         console.log('error');
                     }
                 })
-            },20000))
+            },2000))
         </script>
     </div>
 </body>
