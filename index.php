@@ -106,7 +106,7 @@ session_start();
                     }
                 });
             }
-            window.setInterval(setParam,30000);
+            window.setInterval(setParam, 30000);
         </script>
 
         <!-- <script>
@@ -166,7 +166,6 @@ session_start();
                         },
                         success: function() {
                             console.log("Success");
-                            localStorage.setItem('btnState', buttonState);
                         },
                         error: function() {
                             console.log("Error");
@@ -177,7 +176,23 @@ session_start();
         </script>
 
         <!-- Load BUTTON ON/OFF state from user -->
-        <script src="/src/set-btn-state.js"></script>
+        <script>
+            $(document).ready(setInterval(function() {
+                $.ajax({
+                    url: 'Server/get-relay-state.php',
+                    type: 'GET',
+                    success: function(data) {
+                        console.log(data);
+                        if (data == 1) {
+                            $('#switch-btn').prop('checked', true);
+                        }
+                    },
+                    error: function() {
+                        console.log('error');
+                    }
+                })
+            },20000))
+        </script>
     </div>
 </body>
 

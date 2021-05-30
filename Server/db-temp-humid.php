@@ -9,13 +9,14 @@
 
     // For each user, get humid-temp feed data and store in db
     foreach($all_user as $index => $user) {
+        // echo $user['UserName'];
         get_temp_humid($user["UserName"], $user["AIOKey"]);
     }
 
     // Function to get feed data
-    function get_temp_humid($user, $aiokey)
+    function get_temp_humid($name, $aiokey)
     {
-        if ($user == 'CSE_BBC1')
+        if ($name == 'CSE_BBC1')
             return;
         
         // Init curl object
@@ -23,7 +24,7 @@
     
         // Init url
         $url = "https://io.adafruit.com/api/v2/{username}/feeds/bk-iot-temp-humid/data?limit=1";
-        $url = str_replace("{username}", $user, $url);
+        $url = str_replace("{username}", $name, $url);
         // $TIME_INTERVAL = 3; // hours
         // $start_time = date(DATE_ISO8601, time() - $TIME_INTERVAL * 60 * 60);
         // $url .= "?start_time=" . $start_time;
@@ -56,6 +57,7 @@
         $results = json_decode($response);
 
         // For each result, check duplicate then add to db
+        require('../connect-database.php');
         foreach($results as $result)
         {
             if (count((array)$result) == 1)
@@ -88,8 +90,9 @@
             $value = json_decode($result->value)->data;
             $temp = strtok($value, "-");
             $humidity = strtok("-");
-            $time = date("Y-m-d H:i:s", strtotime($result->created_at));
-            $sql = "INSERT INTO `parameter` (`Temperature`, `Humidity`, `Time_Receive`, `UserName`) VALUES ('$temp', '$humidity', '$time', '$user')";
+            $time = date("Y-m-d H:i:s", strtotime($result->created_at) + 7*60*60);
+            // echo $user;
+            $sql = "INSERT INTO `parameter` (`Temperature`, `Humidity`, `Time_Receive`, `UserName`) VALUES ('$temp', '$humidity', '$time', '$name')";
             $result = $conn->query($sql) or die($conn->error);
             if ($result) {
                 echo "ID: " . $id . " is added.\n";

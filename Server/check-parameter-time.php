@@ -29,7 +29,8 @@
         if ($user["UserName"] == 'CSE_BBC')
             continue;
         $is_relay_on = get_relay_state($user["UserName"], $user["AIOKey"]);
-        $relay_state = check_time($user["UserName"]) or check_para($user["UserName"]);
+        $relay_state = check_time($user["UserName"]) || check_para($user["UserName"]);
+        echo $relay_state;
         if (($is_relay_on == 1 and $relay_state == FALSE) or ($is_relay_on == 0 and $relay_state == TRUE))
         {
             require('phpMQTT.php');
@@ -86,31 +87,27 @@
     function check_time($username)
     {
         include '../connect-database.php';
-<<<<<<< HEAD
-        $get_all_time = "SELECT `start_time`, `end_time`, MAX(`ID`) AS 'id' FROM `timesetting` WHERE `UserName`='$username'";
-=======
-        $get_all_time = "SELECT `start_time`, `end_time` FROM `timesetting` WHERE `UserName`='$username'";
->>>>>>> 29b03abfbb66c9a2f9c2cf5abf834c351decd55f
-        $time_query_result = $conn->query($get_all_time) or die($conn->error);
-        $all_time = $time_query_result->fetch_all(MYSQLI_ASSOC);
-        foreach ($all_time as $index => $time)
-        {
-            if (time() >= $time['start_time'] and time() <= $time['end_time'])
-                return TRUE;
-        }
-        return FALSE;
+        $get_latest_time = "SELECT `start_time`, `end_time` FROM `timesetting` WHERE `UserName`='$username' ORDER BY `ID` DESC LIMIT 0, 1";
+        $time_query_result = $conn->query($get_latest_time) or die($conn->error);
+        $latest_time = $time_query_result->fetch_assoc();
+        if (date('H:i', time() + 7*60*60) >= $latest_time['start_time'] and date('H:i', time() + 7*60*60) <= $latest_time['end_time'])
+            return true;
+        return false;
     }
 
     function check_para($username)
     {
         include '../connect-database.php';
-        $get_para = "SELECT `Temperature`, `Humidity`, MAX(`Time_Receive`) AS `CURR_TIME` FROM `parameter` WHERE `UserName`='$username'";
+        // echo $username;
+        $get_para = "SELECT `Temperature`, `Humidity` FROM `parameter` WHERE `UserName`='$username' ORDER BY `Time_Receive` DESC LIMIT 0, 1";
         $para_query_result = $conn->query($get_para) or die($conn->error);
         $para = $para_query_result->fetch_assoc();
         
-        $get_min_para = "SELECT `Temperature`, `Humidity`, MAX(`Created`) AS `CURR_TIME` FROM `minimumparam` WHERE `UserName`='$username'";
+        $get_min_para = "SELECT `Temperature`, `Humidity` FROM `minimumparam` WHERE `UserName`='$username' ORDER BY `Created` DESC LIMIT 0, 1";
         $min_para_query_result = $conn->query($get_min_para) or die($conn->error);
         $min_para = $min_para_query_result->fetch_assoc();
+        echo $para['Temperature'];".\n";
+        echo $min_para['Temperature'];
         if ($para['Temperature'] >= $min_para['Temperature'])
             return TRUE;
         if ($para['Humidity'] <= $min_para['Humidity'])
