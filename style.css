@@ -9,32 +9,31 @@
 html,
 body {
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
 }
-
-
-/* Home section */
-
 
 /* Header section */
 
 #main {
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 #header-section {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    height: 50px;
-    background-color: #CAE6D9;
-    padding: 0px;
-    z-index: 1;
+    display: flex;
+    width: 100%;
+    min-height: 50px;
+    background-color: #fff;
 }
 
 #header-section .sign-out {
+    display: block;
     float: right;
-    overflow: hidden;
+    position: absolute;
+    right: 0;
     line-height: 50px;
 }
 
@@ -48,174 +47,252 @@ body {
 /* Navigation section */
 
 #nav-section {
-    width: 6%;
-    height: 100%;
-    /* position: relative;
-    top: 50px;
-    left: 0px; */
-    margin-top: 50px;
-    float: left;
-    overflow: hidden;
+    background-color: #4e73df;
+    flex: 1;
 }
 
 #nav-section .nav {
-    height: 100%;
-    background-color: #2A616E;
+    height: 100%;  
+    display: flex;
 }
 
-.nav {
-    list-style-type: none;
-}
-
-.nav li {
-    color: #fff;
+#nav-section .nav-icon {
+    display: block;
+    width: 80%;
     text-align: center;
-    padding: 20px 10px;
-    height: fit-content;
+    color: #fff;
+    margin: 30px 0px 0px 18px;
+    padding-bottom: 30px;
+    font-size: 90px;
+    /* border-bottom: 1px solid #fff; */
 }
 
-.nav li:hover {
-    background-color: #ccc;
+#nav-section .nav {
+    list-style-type: none;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#nav-section .nav li {
+    width: 100%;
+}
+
+#nav-section .nav a {
+    display: block;
+    color: #fff;
+    margin: 20px 0px;
+    height: fit-content;
+    line-height: 35px;
+    font-size: 17px;
+    text-decoration: none;
+}
+
+#nav-section .nav a:hover {
+    color: #000;
+    transition: 0.4s;
+}
+
+#nav-section .nav li:hover {
+    background-color: #eeeeee;
+}
+
+.nav i {
+    text-align: left;
+    display: block;
 }
 
 .nav .btn {
-    font-size: 35px;
-    text-align: center;
-    color: #fff;
-    width: 100%;
-    justify-content: center;
-    padding: 5px;
-    /* border: 1px solid #fff; */
+    font-size: 20px;
+    margin-left: 15px;
+    margin-right: 10px;
+    display: inline-block;
 }
+
+
 
 
 /* Content section */
+#content {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
 
-#content-section {
-    width: 94%;
+/* Home section */
+
+#home-section {
     height: 100%;
-    margin-top: 50px;
-    float: right;
-    overflow: hidden;
-    background-color: #041A23;
-    position: relative;
+    background-color: #bec6e9;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex: 7;
+    margin-bottom: 30px;
 }
 
-#content-section .gauge.gauge-temp {
-    position: absolute;
-    top: 20%;
-    left: 15%;
+#home-section .gauge-chart-container {
+    display: flex;
+    flex-direction: column;
 }
 
-#content-section .gauge.gauge-humid {
-    position: absolute;
-    top: 20%;
-    right: 15%;
+#home-section .gauge-container {
+    display: flex;
+    /* height: fit-content; */
+    flex-direction: row;
+    /* margin-left: 30px; */
+    margin-top: 40px;
+    justify-content: space-around;
+    
 }
 
-.temperature p,
-.humidity p {
-    padding-top: 14px;
-    font-size: 25px;
+#home-section .gauge {
+    width: 500px;
+    color: #4e73df;
 }
 
-/*Function: content slider*/
 
-#content-slider {
-    width: 94%;
-    height: 100%;
-    margin-top: 50px;
-    float: right;
-    overflow: hidden;
-    background-color: #041A23;
-    position: relative;
-}
 
-#content-slider .slidecontainer {
-    position: relative;
-    top: 0%;
-    left: 20%;
-}
-
-#content-slider .gauge.gauge-temp {
-    position: absolute;
-    top: 150px;
-    left: 20px;
-}
-
-#content-slider .gauge.gauge-humid {
-    position: absolute;
-    top: 350px;
-    left: 20px;
-}
-
-#content-slider .gauge.gauge-temp-number {
-    position: absolute;
-    top: 185px;
-    left: 800px;
-    color: indigo;
-    background-color: white;
-    border: 1px black;
-    border-radius: 20px;
-    width: 100px;
-    height: 50px;
+#home-section .gauge {
     text-align: center;
-    padding-top: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px 20px 20px 20px;
+    background-color: #fff;
+    height: fit-content;
+    background-clip: padding-box;
 }
 
-#content-slider .gauge.gauge-humid-number {
-    position: absolute;
-    top: 385px;
-    left: 800px;
-    color: indigo;
-    background-color: white;
-    border: 1px black;
-    border-radius: 20px;
-    width: 100px;
-    height: 50px;
+#home-section .gauge_header p {
+    text-align: left;
+    color: #4e73df;
+    padding: 10px 10px;
+    font-size: 22px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    background-clip: padding-box;
+}
+
+
+#home-section .gauge.gauge-temp {
+    margin-right: 20px;
+}
+
+#home-section .avg-bar-chart-container {
+    display: flex;
+    /* align-self: stretch; */
+    flex-grow: 0.2;
+    height: 50%;
+}
+
+#home-section #bar-chart {
+    background-color: #fff;
+    padding: 30px;
+    margin-top: 30px;
+    border-radius: 10px;
+    /* height: 100%; */
+}
+
+#home-section .toggle {
     text-align: center;
-    padding-top: 10px;
-}
-
-.slidecontainer p{
-    font-size: 25px;
-}
-
-
-/*Function: Gauge*/
-
-#content-section .gauge {
-    padding-top: 15px;
-    text-align: center;
-}
-
-
-/*Function: Toggle*/
-
-#content-section .toggle {
-    display: block;
-    text-align: center;
-    position: relative;
     line-height: 34px;
-    top: 70%;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    /* height: 90%; */
+    width: fit-content;
+    align-items: center;
+    /* padding: 15px 20px; */
+    margin-top: 40px;
+    border-radius: 10px;
+    margin-bottom: 40px;
 }
 
-#content-section .off-switch {
-    display: inline-block;
+#home-section .off-switch {
     padding-right: 10px;
     line-height: 34px;
     color: #fff;
 }
 
-#content-section .on-switch {
+#home-section .on-switch {
     display: inline-block;
     padding-left: 10px;
     line-height: 34px;
     color: #fff;
 }
 
-#content-slider .set-info-btn {
-    background-color: #2A616E;
+#home-section .toggle_content {
+    margin-bottom: 10px;
+    border-bottom: 1px groove rgba(0, 0, 0, 0.1);
+    padding: 15px 20px;
+}
+
+#home-section .toggle_header {
+    display: inline-block;
+    color: #4e73df;
+    font-size: 22px;
+    margin-right: 20px;
+    line-height: 50px;
+}
+
+
+.sprinkler_icon {
+    font-size: 190px;
+    color: #ccc;
+    padding: 0px 10px;
+    text-align: center;
+}
+
+
+/* Set-info section */
+
+#set-info-section {
+    height: 100%;
+    background-color: #bec6e9;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    flex: 7;
+}
+
+
+#set-info-section .slidecontainer {
+    width: 100%;
+}
+
+#set-info-section .gauge.gauge-temp-number {
+    font-size: 22px;
+    color: #fff;
+    background-color: #448292;
+    border: 1px groove rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    padding-top: 10px;
+    display: block;
+    float: right;
+    overflow: hidden;
+    /* margin-right: 10px; */
+}
+
+#set-info-section .gauge.gauge-humid-number {
+    font-size: 22px;
+    color: #fff;
+    background-color: #448292;
+    border: 1px groove rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    padding-top: 10px;
+    display: block;
+    float: right;
+    /* margin-right: 10px; */
+}
+
+#set-info-section .set-info-btn {
+    border-radius: 8px;
+    background-color: rgb(33, 97, 216);
     border: none;
     color: white;
     padding: 15px 32px;
@@ -225,39 +302,76 @@ body {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    /*Position*/
-    position: absolute;
-    top: 66%;
-    left: 46%;
 }
 
-#content-slider .set-info-btn:hover {
+#set-info-section .set-info-btn:hover {
     background-color: #ccc;
 }
 
+.set-info-container {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    padding: 50px;
+    background-color: #fff;
+    border-radius: 15px;
+    align-items: center;
+}
+
+.slidecontainer .humidity,
+.slidecontainer .temperature{
+    display: block;
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #4e73df;
+    float: right;
+    line-height: 30px;
+    margin-left: 15px;
+}
+
+#set-info-section .gauge.gauge-temp,
+#set-info-section .gauge.gauge-humid{
+    width: fit-content;
+}
+
+#set-info-section i {
+    /* display: inline-block; */
+    color: #4e73df;
+    font-size: 22px;
+}
+
+
+.slidecontainer.humid {
+    margin-top: 100px;
+    /* margin-bottom: 100px; */
+    margin-bottom: 50px;
+}
+
+
 /* Login section */
+
 #login-section {
+    display: flex;
     width: 100%;
     height: 100%;
-    margin-top: 50px;
-    float: right;
-    overflow: hidden;
-    background-color: #041A23;
-    position: relative;
+    background-color: #bec6e9;
 }
 
 #login-section .login {
-    width: 300px;
-    position: absolute;
-    top: 20%;
-    left: 42%;
+    width: 500px;
+    margin: auto;
+    border: 1px groove rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    padding: 40px 40px;
+    background-color: #fff;
 }
 
 #login-section .header {
-    color: #fff;
-    font-weight: 100;
+    color: #000;
+    font-weight: 900;
     padding-bottom: 20px;
-    border-bottom: #fff solid 1px;
+    border-bottom: #000 solid 1px;
     margin-bottom: 20px;
 }
 
@@ -279,7 +393,7 @@ body {
     font-size: 20px;
     margin: 15px 0px;
     display: block;
-    color: #fff;
+    color: #000;
 }
 
 #login-section .sign-in-btn {
@@ -316,48 +430,79 @@ body {
 
 #sign-up {
     text-decoration: none;
-    color: aquamarine;
+    color: rgb(13, 146, 13);
     display: block;
-    padding-top: 5px;
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 900;
 }
 
 /* Set-time section */
-
-#content-section .length__title {
-    padding-bottom: 20px;
+#set-time-section {
+    height: 100%;
+    background-color: #bec6e9;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex: 7;
 }
 
-#content-section .container {
-    position: relative;
-    left: 12%;
-    top: 15%;
-    margin-bottom: 60px;
+#set-time-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    height: fit-content;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
 }
 
-#content-section .button.set-time-btn {
-    position: absolute;
-    top: 64%;
-    left: 45%;
+#set-time-container .set-time-header {
+    align-self: baseline;
+    width: fit-content;
+    font-size: 26px;
+    color: #4e73df;
+    margin: 10px 20px 0px 20px;
+    /* color: rgb(90, 223, 183); */
 }
 
-#content-section .button:hover.set-time-btn {
-   background-color: #ccc;
+#set-time-container .set-time-header p {
+    display: inline-block;
+    margin-left: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px groove rgba(204, 204, 204, 0.5);
 }
+
 
 /* Tables section */
-#content-section .tables-container {
+#table-section {
+    background-color: #bec6e9;
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: center;
+    flex: 7;
+}
+
+.tables-container {
     background-color: #fff;
     padding: 15px;
     width: 96%;
-    position: absolute;
-    display: block;
-    top: 6%;
-    left: 2%
+    height: fit-content;
+    align-self: baseline;
+    margin-top: 30px;
+    border-radius: 10px;
+    /* height: 80%; */
+}
+
+.dataTables_wrapper {
+    position: unset;
 }
 
 .dt-button.buttons-collection {
     display: block;
-    /* font-size: 30px; */
     margin-left: -140px;
     margin-top: 44px;
     margin-bottom: 10px;
@@ -373,23 +518,27 @@ body {
 
 
 /* Chart section */
+#chart-section {
+    height: 100%;
+    background-color: #bec6e9;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    flex: 7;
+}
 
 .chart-container {
-    position: absolute;
     width: 45%;
-    height: 65%;
-    top: 4%;
-    margin: 10px 0px;
-
+    height: 70%;
+    margin-bottom: 100px;
 }
 
-.temp.chart-container {
-    left: 52%;
+.chart-body {
+    width: 100%;
+    height: 100%;
 }
 
-.humid.chart-container {
-    left: 3%;
-}
 
 .chart-container p {
     display: block;
@@ -402,7 +551,7 @@ body {
 .header-container {
     background-color: #f8f9fc;
     padding: 20px;
-    border: 1px groove;
+    border-bottom: 1px groove;
     border-radius: 3px;  
     
 }
@@ -429,4 +578,9 @@ body {
 
 .export-btn:hover {
     background-color: #ccc;
+}
+
+
+#footer-section .copy-right {
+    align-items: center;
 }

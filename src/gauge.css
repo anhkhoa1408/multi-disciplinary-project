@@ -2,8 +2,9 @@
     width: 100%;
     max-width: 400px;
     font-family: "Roboto", sans-serif;
-    font-size: 28px;
-    color: #fff;
+    font-size: 40px;
+    color: #ccc;
+    border-radius: 10px;
   }
   
   .gauge__body_temp {
@@ -23,19 +24,19 @@
     left: 0;
     width: inherit;
     height: 100%;
-    background: rgb(138, 72, 18);
+    background: rgb(206, 3, 3);
     transform-origin: center top;
     transform: rotate(0.0turn);
     transition: transform 1.5s ease-out;
   }
   
   .gauge__cover_temp {
-    width: 75%;
-    height: 150%;
-    background: #041A23;
+    width: 85%;
+    height: 170%;
+    background: #fff;
     border-radius: 50%;
     position: absolute;
-    top: 25%;
+    top: 15%;
     left: 50%;
     transform: translateX(-50%);
   
@@ -71,12 +72,12 @@
   }
   
   .gauge__cover_humid {
-    width: 75%;
-    height: 150%;
-    background: #041A23;
+    width: 85%;
+    height: 170%;
+    background: #fff;
     border-radius: 50%;
     position: absolute;
-    top: 25%;
+    top: 15%;
     left: 50%;
     transform: translateX(-50%);
   

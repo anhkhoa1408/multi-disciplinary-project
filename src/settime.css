@@ -1,9 +1,9 @@
 .container {
-    margin: 40px 40px;
-    width: 70%;
-    height: 100px;
+    margin: 35px 40px;
+    width: 90%;
+    height: 140px;
     padding: 10px 25px;
-    background: #0a0e31;
+    background: rgb(77, 77, 199);
     border-radius: 15px;
     -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(0, 0, 0, 0.35), 0 8px 12px rgba(0, 0, 0, 0.15);
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(0, 0, 0, 0.35), 0 8px 12px rgba(0, 0, 0, 0.15);
@@ -12,35 +12,22 @@
 
 .field-title {
   position: absolute;
-  top: -10px;
+  top: -35px;
   left: 6px;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
   font-weight: 800;
-  color: rgba(255, 255, 255, 0.5);
+  color: #fff;
   text-transform: uppercase;
-  font-size: 1rem;
-  pointer-events: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-     
-      -ms-user-select: none;
-          user-select: none;
+  font-size: 16px;
 }
 
 .range__slider {
   position: relative;
+  top: 20px;
   width: 100%;
   height: calc(65px - 10px);
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   background: rgba(255, 255, 255, 0.08);
   border-radius: 8px;
   margin: 30px 0;
@@ -71,64 +58,45 @@
   color: #fff;
 }
 
-#slider {
+.slider {
   -webkit-appearance: none;
   width: calc(100% - (70px));
   height: 2px;
   border-radius: 5px;
-  background: rgba(255, 255, 255, 0.314);
+  background: rgba(255, 255, 255);
   outline: none;
   padding: 0;
   margin: 0;
   cursor: pointer;
 }
 
-#slider::-webkit-slider-thumb {
+.slider::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  background: white;
+  background: rgb(90, 223, 183);
   cursor: pointer;
   -webkit-transition: all 0.15s ease-in-out;
   transition: all 0.15s ease-in-out;
 }
 
-#slider::-webkit-slider-thumb:hover {
+.slider::-webkit-slider-thumb:hover {
   background: #d4d4d4;
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
 }
 
-#slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  border: 0;
-  border-radius: 50%;
-  background: white;
-  cursor: pointer;
-  -webkit-transition: background 0.15s ease-in-out;
-  transition: background 0.15s ease-in-out;
-}
-
-#slider::-moz-range-thumb:hover {
-  background: #d4d4d4;
-}
-
 .button {
-  background-color: indigo;
+  margin-top: 30px;
+  border-radius: 8px;
+  background-color: rgba(38, 38, 230, 0.842);
   border: none;
   color: white;
-  padding: 15px 32px;
-  /* margin: 4px 2px; */
-  
+  padding: 15px 32px;  
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
-  /*Position*/
-  position: relative;
-  top: 20px;
-  left: 32%;
 }

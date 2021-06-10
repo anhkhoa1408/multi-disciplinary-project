@@ -3,21 +3,16 @@ $(document).ready(function () {
         url: "get-chart-data.php",
         type: "GET",
         success: function (data) {
+            // console.log(data)
             var newData = JSON.parse(data);
             var tempData = [];
             var humidData = [];
             var timeData = [];
-            // var avgTemp = 0, avgHumid = 0;
             for (var i = 0; i < newData.length; i++) {
-                let time = new Date(newData[i].Time_Receive);
-                tempData.push(newData[i].Temperature);
-                humidData.push(newData[i].Humidity);
-                timeData.push(time.toLocaleTimeString('en-GB', {
-                    hour: '2-digit',
-                    minute: '2-digit'
-                }));
-                // avgTemp += newData[i].timeData / newData.length;
-                // avgHumid += newData[i].humidData / newData.length;
+                let time = new Date(newData[i].Time);
+                tempData.push(newData[i].Average_Temperature);
+                humidData.push(newData[i].Average_Humidity);
+                timeData.push(time.getDate() + '/' + time.getMonth() + '/' + time.getFullYear());
             }
 
             var temp = {
@@ -28,7 +23,8 @@ $(document).ready(function () {
                     data: tempData,
                     fill: false,
                     borderColor: 'rgb(255, 99, 132)',
-                    tension: 0.1
+                    tension: 0.1,
+                    
                 }]
             }
 
@@ -44,24 +40,92 @@ $(document).ready(function () {
                 }]
             }
 
-            var options = {
+            var temp_option = {
+                scales: {
+                    xAxes: {
+                        grid: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Time receive',
+                            color: 'Blue',
+                            font: {
+                                size: 15
+                            }
+                        }
+                    },
+                    yAxes: {
+                        min: 0,
+                        max: 100,
+                        grid: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Temperature',
+                            color: 'Blue',
+                            font: {
+                                size: 15
+                            }
+                        }
+                    }
+                },
                 responsive: true,
                 maintainAspectRatio: false,
                 animation: {
-                    duration: 1500,
+                    duration: 4000,
                 }
-            }
+            };
+
+            var humid_option = {
+                scales: {
+                    xAxes: {
+                        grid: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Time receive',
+                            color: 'Blue',
+                            font: {
+                                size: 15
+                            }
+                        }
+                    },
+                    yAxes: {
+                        min: 0,
+                        max: 100,
+                        grid: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Humidity',
+                            color: 'Blue',
+                            font: {
+                                size: 15
+                            }
+                        }
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: {
+                    duration: 4000,
+                }
+            };
 
             var tempGraph = new Chart($('#temp-chart'), {
                 type: 'line',
                 data: temp,
-                options: options
+                options: temp_option
             })
 
             var humidGraph = new Chart($('#humid-chart'), {
                 type: 'line',
                 data: humid,
-                options: options
+                options: humid_option
             })
 
             $('.temp .export-btn').click(function () {

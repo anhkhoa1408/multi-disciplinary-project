@@ -20,10 +20,10 @@
 <body>
     <div id="main">
         <!-- Header section -->
-        <div id="header-section">
+        <!-- <div id="header-section">
             <img src="" alt="" class="logo">
 
-        </div>
+        </div> -->
 
 
         <!-- Login section -->

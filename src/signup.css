@@ -3,11 +3,15 @@
 #sign-up-form {
     position: absolute;
     background-color: #fff;
-    width: 30%;
-    top: 25%;
-    left: 38%;
+    width: 600px;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
     animation-name: animatetop;
-    animation-duration: 0.4s
+    animation-duration: 0.4s;
+    padding: 10px;
+    border: 1px groove rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
 }
 
 /* Full-width input fields */
@@ -73,11 +77,11 @@ button:hover {
 /* Add Animation */
 @-webkit-keyframes animatetop {
     from {top: 50%; opacity:0} 
-    to {top:25%; opacity:1}
+    to {top:20%; opacity:1}
   }
   
 @keyframes animatetop {
     from {top: 50%; opacity:0}
-    to {top:25%; opacity:1}
+    to {top: 20%; opacity:1}
 }
   

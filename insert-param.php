@@ -5,10 +5,6 @@
     $humidity = $_POST['humidity'];
     
     $user = $_SESSION['user'];
-    // $findUserID = "SELECT `ID` FROM `accounts` WHERE `UserName` = '$user'";
-    // $result = $conn->query($findUserID) or die($conn->error);
-    // $row = $result->fetch_assoc();
-    // $userID = $row['ID'];
 
     $time = date("Y-m-d H:i:s", time() + 7 * 60 * 60);
     $sql = "INSERT INTO `parameter` (`Temperature`, `Humidity`, `Time_Receive`, `UserName`) VALUES ('$temp', '$humidity', '$time', '$user')";
