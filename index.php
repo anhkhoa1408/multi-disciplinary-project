@@ -117,28 +117,12 @@ session_start();
                 type: 'GET',
                 success: function(data) {
                     var dataArray = data.split('-');
-                    const humidElement = document.querySelector(".gauge.gauge-humid");
+                    console.log(dataArray);
                     const tempElement = document.querySelector(".gauge.gauge-temp");
+                    const humidElement = document.querySelector(".gauge.gauge-humid");
                     setTempValue(tempElement, dataArray[0]);
                     setHumidValue(humidElement, dataArray[1]);
-                    $.ajax({
-                        // url: 'insert-param.php',
-                        // type: 'POST',
-                        // data: {
-                        //     temperature: dataArray[0],
-                        //     humidity: dataArray[1]
-                        // },
-                        success: function(msg) {
-                            console.log(msg);
-                            $.ajax({
-                                url: 'handle-avg-data.php',
-                                type: 'GET',
-                                success: function(message) {
-                                    loadChart();
-                                }
-                            })
-                        }
-                    })
+                    loadChart();
                 },
                 error: function() {
                     console.log("Error");

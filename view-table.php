@@ -1,11 +1,3 @@
-<?php
-    session_start();
-    include 'connect-database.php';
-    $userName = $_SESSION['user'];
-    $getParameter = "SELECT * FROM `avgparam` WHERE `UserName` = '$userName'";
-    $result = $conn->query($getParameter) or die($conn->error);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SprinklerIOT</title>
-    <link rel="stylesheet" href="/assets/fontawesome-free-5.15.3-web/fontawesome-free-5.15.3-web/css/all.css">
+    <!-- <link rel="stylesheet" href="/assets/fontawesome-free-5.15.3-web/fontawesome-free-5.15.3-web/css/all.css"> -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.css">
     <link rel="stylesheet" href="/style.css">
@@ -57,20 +49,9 @@
                             <tr>
                                 <td>Average Temperature</td>
                                 <td>Average Humidity</td>
-                                <td>Time</td>
+                                <td>Date</td>
                             </tr>
                         </thead>
-                        <?php
-                            while ($row = mysqli_fetch_array($result)) {
-                                echo '  
-                            <tr>   
-                                    <td>' . $row["Average_Temperature"] . '</td>  
-                                    <td>' . $row["Average_Humidity"] . '</td>  
-                                    <td>' . $row["Time"] . '</td>
-                            </tr>  
-                            ';
-                            }
-                        ?>
                     </table>
                 </div>
             </div>

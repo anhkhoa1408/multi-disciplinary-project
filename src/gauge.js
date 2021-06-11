@@ -1,5 +1,5 @@
 function setTempValue(gauge, temp) {
-  if (temp < 0 || temp > 50) {
+  if (temp < 0 || temp > 100) {
     return;
   }
 
@@ -12,7 +12,7 @@ function setTempValue(gauge, temp) {
 }
 
 function setHumidValue(gauge, humid) {
-  if (humid < 20 || humid > 90) {
+  if (humid < 0 || humid > 100) {
     return;
   }
 

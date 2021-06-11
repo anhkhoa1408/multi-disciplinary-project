@@ -48,7 +48,7 @@ $(document).ready(function () {
                         },
                         title: {
                             display: true,
-                            text: 'Time receive',
+                            text: 'Day',
                             color: 'Blue',
                             font: {
                                 size: 15
@@ -86,7 +86,7 @@ $(document).ready(function () {
                         },
                         title: {
                             display: true,
-                            text: 'Time receive',
+                            text: 'Day',
                             color: 'Blue',
                             font: {
                                 size: 15
