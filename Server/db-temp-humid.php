@@ -58,6 +58,9 @@
 
         // For each result, check duplicate then add to db
         require('../connect-database.php');
+        echo "<pre>";
+        var_dump($results);
+        echo "</pre>";
         foreach($results as $result)
         {
             if (count((array)$result) == 1)
