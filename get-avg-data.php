@@ -2,10 +2,9 @@
     session_start();
     include "connect-database.php";
 
-    $user = $_SESSION['user'];
-    // $query = "SELECT * FROM `parameter` WHERE date(Time_Receive) = date(NOW()) AND `userName` = '$user'";
+    $userName = $_SESSION['user'];
 
-    $query = "SELECT * FROM `avgparam` WHERE DATE(`Time`) = DATE(NOW()) AND `UserName` = '$user'";
+    $query = "SELECT AVG(`Temperature`) AS `Average_Temperature`, AVG(`Humidity`) AS `Average_Humidity`, DATE(`Time_Receive`) `Time` FROM `parameter` WHERE DATE(`Time_Receive`) = DATE(NOW()) AND `userName` = '$userName' GROUP BY `Time`";
     $result = $conn->query($query) or die($conn->error);
     $data = array();
     foreach ($result as $row) {

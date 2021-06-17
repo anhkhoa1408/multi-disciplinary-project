@@ -3,7 +3,7 @@ async function loadChart() {
         type: 'GET',
         url: 'get-avg-data.php',
         success: function (data) {
-            // console.log(data)
+            console.log(data)
             var newData = JSON.parse(data);
             var temp_humid = [newData[0].Average_Temperature, newData[0].Average_Humidity]
             // console.log(chartData)
@@ -40,7 +40,7 @@ async function loadChart() {
                 responsive: true,
                 maintainAspectRatio: false,
                 animation: {
-                    duration: 3000,
+                    duration: 1000,
                 }
             }
 
