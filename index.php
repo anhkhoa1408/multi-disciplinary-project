@@ -129,7 +129,7 @@ session_start();
                 }
             });
         }
-        window.setInterval(setParam, 1000000);
+        window.setInterval(setParam, 100000);
     </script>
 
 
