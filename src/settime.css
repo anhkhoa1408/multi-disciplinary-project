@@ -3,7 +3,7 @@
     width: 90%;
     height: 140px;
     padding: 10px 25px;
-    background: rgb(77, 77, 199);
+    background: rgb(8, 139, 214);
     border-radius: 15px;
     -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(0, 0, 0, 0.35), 0 8px 12px rgba(0, 0, 0, 0.15);
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(0, 0, 0, 0.35), 0 8px 12px rgba(0, 0, 0, 0.15);
@@ -17,7 +17,7 @@
   font-weight: 800;
   color: #fff;
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 17px;
 }
 
 .range__slider {

@@ -21,10 +21,11 @@ $(document).ready(function () {
 
                     label: 'Temperature',
                     data: tempData,
-                    fill: false,
+                    fill: true,
                     borderColor: 'rgb(255, 99, 132)',
-                    tension: 0.1,
-                    
+                    backgroundColor: 'rgba(255, 99, 132, 0.3)',
+                    tension: 0.5,
+                    pointHoverRadius: 4,
                 }]
             }
 
@@ -34,9 +35,11 @@ $(document).ready(function () {
 
                     label: 'Humidity',
                     data: humidData,
-                    fill: false,
+                    fill: true,
                     borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1
+                    backgroundColor: 'rgba(75, 192, 192, 0.3)',
+                    tension: 0.5,
+                    pointHoverRadius: 4,
                 }]
             }
 
@@ -49,9 +52,9 @@ $(document).ready(function () {
                         title: {
                             display: true,
                             text: 'Day',
-                            color: 'Blue',
+                            color: 'rgba(0, 0, 0, 0.7)',
                             font: {
-                                size: 15
+                                size: 16
                             }
                         }
                     },
@@ -64,17 +67,21 @@ $(document).ready(function () {
                         title: {
                             display: true,
                             text: 'Temperature',
-                            color: 'Blue',
+                            color: 'rgba(0, 0, 0, 0.7)',
                             font: {
-                                size: 15
+                                size: 16
                             }
+                        },
+                        ticks: {
+                            stepSize: 20
                         }
-                    }
+                    },
+                    
                 },
                 responsive: true,
                 maintainAspectRatio: false,
                 animation: {
-                    duration: 4000,
+                    duration: 2000,
                 }
             };
 
@@ -87,9 +94,9 @@ $(document).ready(function () {
                         title: {
                             display: true,
                             text: 'Day',
-                            color: 'Blue',
+                            color: 'rgba(0, 0, 0, 0.7)',
                             font: {
-                                size: 15
+                                size: 16
                             }
                         }
                     },
@@ -102,17 +109,20 @@ $(document).ready(function () {
                         title: {
                             display: true,
                             text: 'Humidity',
-                            color: 'Blue',
+                            color: 'rgba(0, 0, 0, 0.7)',
                             font: {
-                                size: 15
+                                size: 16
                             }
+                        },
+                        ticks: {
+                            stepSize: 20
                         }
                     }
                 },
                 responsive: true,
                 maintainAspectRatio: false,
                 animation: {
-                    duration: 4000,
+                    duration: 2000,
                 }
             };
 

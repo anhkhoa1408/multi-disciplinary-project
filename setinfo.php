@@ -1,17 +1,17 @@
 <?php
-    session_start();
-    include "connect-database.php";
-    $username = $_SESSION["user"];
-    $get_latest_para = "SELECT * FROM `minimumparam` WHERE `UserName` = '$username' ORDER BY `Created` DESC LIMIT 0, 1";
-    $query = $conn->query($get_latest_para) or die($conn->error);
-    $result = $query->fetch_assoc();
-    if ($result == null) {
-        $temperature = 0;
-        $humidity = 0;
-    } else {
-        $temperature = $result['Temperature'];
-        $humidity = $result['Humidity'];
-    }
+session_start();
+include "connect-database.php";
+$username = $_SESSION["user"];
+$get_latest_para = "SELECT * FROM `minimumparam` WHERE `UserName` = '$username' ORDER BY `Created` DESC LIMIT 0, 1";
+$query = $conn->query($get_latest_para) or die($conn->error);
+$result = $query->fetch_assoc();
+if ($result == null) {
+    $temperature = 0;
+    $humidity = 0;
+} else {
+    $temperature = $result['Temperature'];
+    $humidity = $result['Humidity'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +24,7 @@
     <title>SprinklerIOT</title>
     <link rel="stylesheet" href="/src/gauge.css">
     <link rel="stylesheet" href="/src/slider.css">
+    <link rel="stylesheet" href="/src/toast-message.css">
     <link rel="stylesheet" href="/style.css">
     <script src="/src/icon.js"></script>
     <script src="/src/jquery-3.6.0.min.js"></script>
@@ -105,7 +106,11 @@
             </div>
 
         </div>
+
+        <div id="toast"></div>
     </div>
+
+    <script src="/src/toast-message.js"></script>
 
     <script src="/src/slider.js"></script>
 
@@ -126,10 +131,10 @@
                 success: function(message) {
                     console.log(message)
                     if (message == 1)
-                        alert('Success');
+                        showSuccessToast();
                 },
                 error: function() {
-                    console.log('Error');
+                    showErrorToast();
                 }
             });
         }

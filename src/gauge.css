@@ -11,7 +11,7 @@
     width: 100%;
     height: 0;
     padding-bottom: 50%;
-    background: #b4c0be;
+    background: #e2f1ee;
     position: relative;
     border-top-left-radius: 100% 200%;
     border-top-right-radius: 100% 200%;
@@ -24,7 +24,7 @@
     left: 0;
     width: inherit;
     height: 100%;
-    background: rgb(206, 3, 3);
+    background: linear-gradient(150deg, rgb(218, 185, 79), rgb(255, 0, 0));
     transform-origin: center top;
     transform: rotate(0.0turn);
     transition: transform 1.5s ease-out;
@@ -52,7 +52,7 @@
     width: 100%;
     height: 0;
     padding-bottom: 50%;
-    background: #b4c0be;
+    background: #e2f1ee;
     position: relative;
     border-top-left-radius: 100% 200%;
     border-top-right-radius: 100% 200%;
@@ -65,7 +65,7 @@
     left: 0;
     width: inherit;
     height: 100%;
-    background: rgb(0, 38, 255);
+    background: linear-gradient(135deg, rgb(79, 218, 183), rgb(0, 110, 255));
     transform-origin: center top;
     transform: rotate(0.0turn);
     transition: transform 1.5s ease-out;

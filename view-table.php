@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SprinklerIOT</title>
     <!-- <link rel="stylesheet" href="/assets/fontawesome-free-5.15.3-web/fontawesome-free-5.15.3-web/css/all.css"> -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.css">
     <link rel="stylesheet" href="/style.css">
     <script src="/src/jquery-3.6.0.min.js"></script>
     <script src="/src/icon.js"></script>
-    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.js"></script>
 </head>
 
@@ -44,7 +44,7 @@
             <div id="table-section">
                 <!-- Tables section -->
                 <div class="tables-container">
-                    <table id="temp_humid_data" class="uk-table uk-table-hover uk-table-striped">
+                    <table id="temp_humid_data" class="display row-border hover stripe order-column">
                         <thead>
                             <tr>
                                 <td>Average Temperature</td>
@@ -83,6 +83,7 @@
                 ]
             });
         });
+
     </script>
 </body>
 

@@ -50,7 +50,7 @@ session_start();
                 <div class="toggle">
                     <!-- <p class="off-switch">OFF</p> -->
                     <div class="toggle_content">
-                        <p class="toggle_header">Realtime control</p>
+                        <p class="toggle_header">Realtime Control</p>
                         <label class="switch">
                             <input id="switch-btn" type="checkbox">
                             <span class="slider round"></span>
@@ -84,6 +84,15 @@ session_start();
                     </div>
 
                     <div class="avg-bar-chart-container">
+                        <div class="avg-bar-chart-header">
+                            <p>Average Chart</p>
+                            <li class="drop-down-icon"><i class="fas fa-bars"></i></li>
+                            <ul class="avg-chart-content-date">
+                                <li>Today</li>
+                                <li>Yesterday</li>
+                                <li>Last Week</li>
+                            </ul>
+                        </div>
                         <canvas id="bar-chart">
 
                         </canvas>
@@ -117,19 +126,19 @@ session_start();
                 type: 'GET',
                 success: function(data) {
                     var dataArray = data.split('-');
-                    console.log(dataArray);
+                    // console.log(dataArray);
                     const tempElement = document.querySelector(".gauge.gauge-temp");
                     const humidElement = document.querySelector(".gauge.gauge-humid");
                     setTempValue(tempElement, dataArray[0]);
                     setHumidValue(humidElement, dataArray[1]);
-                    loadChart();
+                    loadChart(0);
                 },
                 error: function() {
                     console.log("Error");
                 }
             });
         }
-        window.setInterval(setParam, 100000);
+        window.setInterval(setParam, 30000);
     </script>
 
 
@@ -191,7 +200,7 @@ session_start();
         window.setInterval(getBtnState, 20000);
     </script>
 
-    
+
 
 </body>
 
