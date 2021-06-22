@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    var date = new Date();
     $.ajax({
         url: "get-chart-data.php",
         type: "GET",
@@ -82,6 +83,21 @@ $(document).ready(function () {
                 maintainAspectRatio: false,
                 animation: {
                     duration: 2000,
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Last updated ' + date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear(),
+                        position: 'bottom',
+                        align: 'start',
+                        padding: {
+                            top: 10
+                        },
+                        font: {
+                            size: 12,
+                            weight: '500'
+                        }
+                    }
                 }
             };
 
@@ -123,6 +139,21 @@ $(document).ready(function () {
                 maintainAspectRatio: false,
                 animation: {
                     duration: 2000,
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Last updated ' + date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear(),
+                        position: 'bottom',
+                        align: 'start',
+                        padding: {
+                            top: 10
+                        },
+                        font: {
+                            size: 12,
+                            weight: '500'
+                        }
+                    }
                 }
             };
 

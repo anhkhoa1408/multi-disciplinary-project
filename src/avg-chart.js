@@ -1,6 +1,7 @@
 var tempGraph
 
 function loadChart(interval) {
+    var date = new Date();
     $.ajax({
         type: "POST",
         url: 'get-avg-data.php',
@@ -50,6 +51,19 @@ function loadChart(interval) {
                 plugins: {
                     legend: {
                         display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Last updated ' + date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear(),
+                        position: 'bottom',
+                        align: 'start',
+                        padding: {
+                            top: 20
+                        },
+                        font: {
+                            size: 13,
+                            weight: '500'
+                        }
                     }
                 }
                 

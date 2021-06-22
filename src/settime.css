@@ -100,3 +100,9 @@
   font-size: 16px;
   cursor: pointer;
 }
+
+.button:hover {
+  background-color: rgba(38, 38, 230, 0.6);
+    transform: scale(1.05);
+    transition: 0.4s ease;
+}

@@ -14,6 +14,8 @@ session_start();
     <script src="/src/icon.js"></script>
     <link rel="stylesheet" href="/src/gauge.css">
     <link rel="stylesheet" href="/src/toggle.css">
+    <link rel="stylesheet" href="/src/watch.css">
+    <link rel="stylesheet" href="/src/toast-message.css">
     <link rel="stylesheet" href="/style.css">
     <script src="/src/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -57,7 +59,28 @@ session_start();
                         </label>
                     </div>
 
-                    <i class="sprinkler_icon fas fa-sprinkler"></i>
+                    <div class="clock-container">
+                        <div class="hours">
+                            <span>Hours</span>
+                            <p id='hour'> 00 </p>
+                        </div>
+                        <div class="colon"></div>
+                        <div class="minutes">
+                            <span>Minutes</span>
+                            <p id='minute'> 00 </p>
+                        </div>
+                        <div class="colon"></div>
+                        <div class="seconds">
+                            <span>Seconds</span>
+                            <p id='second'> 00 </p>
+                        </div>
+                    </div>
+
+                    <div class="bottom">
+                        <div class="progress-bar" id="progress"></div>
+                    </div>
+
+                    <i class="fas fa-sprinkler sprinkler_icon"></i>
                 </div>
 
                 <div class="gauge-chart-container">
@@ -105,7 +128,15 @@ session_start();
 
 
         </div>
+
+        <div id="toast"></div>
     </div>
+
+    <!-- Function to show toast message -->
+    <script src="/src/toast-message.js"></script>
+
+
+    <script src="/src/watch.js"></script>
 
     <!-- Function to load Humidity and Temperature to gauge -->
     <script src="/src/gauge.js"></script>
@@ -132,9 +163,10 @@ session_start();
                     setTempValue(tempElement, dataArray[0]);
                     setHumidValue(humidElement, dataArray[1]);
                     loadChart(0);
+                    showSuccessToast("Get data successfully!")
                 },
                 error: function() {
-                    console.log("Error");
+                    showErrorToast("Error occur, please contact to the administrator!");
                 }
             });
         }
@@ -152,12 +184,14 @@ session_start();
                 if (State === true) {
                     buttonState = 1;
                     $('.sprinkler_icon').css('color', '#4e73df');
-                    $('.sprinkler_icon').css('transition', '0.5s');
+                    $('.sprinkler_icon').css('transition', '0.8s');
                     $('.slider').css('--col', 'rgb(76, 228, 76)')
+                    showSuccessToast("Sprinkler is on")
                 } else {
                     buttonState = 0;
                     $('.sprinkler_icon').css('color', '#ccc');
                     $('.slider').css('--col', 'red')
+                    showSuccessToast("Sprinkler is off")
                 }
 
                 $.ajax({
