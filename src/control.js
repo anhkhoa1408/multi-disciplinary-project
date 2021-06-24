@@ -84,6 +84,14 @@ $('#switch-time-btn').click(function() {
         $('#switch-time-btn + .slider').css('--col', 'red')
     }
     localStorage.setItem('timeState', checkTimeState);
+    $.ajax({
+        url: 'Server/user_toggle.php',
+        type: 'POST',
+        data: {
+            type: "toggle_time",
+            state: checkTimeState?1:0
+        },
+    });
 })
 
 $('#switch-para-btn').click(function() {
@@ -97,6 +105,14 @@ $('#switch-para-btn').click(function() {
         $('#switch-para-btn + .slider').css('--col', 'red');
     }
     localStorage.setItem('paraState', checkParaState);
+    $.ajax({
+        url: 'Server/user_toggle.php',
+        type: 'POST',
+        data: {
+            type: "toggle_para",
+            state: checkParaState?1:0
+        },
+    });
 })
 
 $('#toggle-on-all').click(function() {

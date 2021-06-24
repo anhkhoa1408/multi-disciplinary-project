@@ -3,7 +3,7 @@
     include '../connect-database.php';
         
     // Get all user
-    $get_all_user = "SELECT `UserName`, `AIOKey` FROM `accounts`";
+    $get_all_user = "SELECT * FROM `accounts`";
     $user_query_result = $conn->query($get_all_user) or die($conn->error);
     $all_user = $user_query_result->fetch_all(MYSQLI_ASSOC);
 
@@ -29,7 +29,7 @@
         if ($user["UserName"] == 'CSE_BBC')
             continue;
         $is_relay_on = get_relay_state($user["UserName"], $user["AIOKey"]);
-        $relay_state = check_time($user["UserName"]) || check_para($user["UserName"]);
+        $relay_state = ($user["toggle_time"] && check_time($user["UserName"])) || ($user["toggle_para"] && check_para($user["UserName"]));
         echo $relay_state;
         if (($is_relay_on == 1 and $relay_state == FALSE) or ($is_relay_on == 0 and $relay_state == TRUE))
         {
