@@ -81,13 +81,6 @@ function loadChart(interval) {
     })
 }
 
-// Function to catch chart content click event
-$('.drop-down-icon').click(function() {
-    if($('.avg-chart-content-date').css('display') == 'block')
-        $('.avg-chart-content-date').css('display', 'none')
-    else 
-        $('.avg-chart-content-date').css('display', 'block')
-})
 
 var contentList = Array.from($('.avg-chart-content-date li'))
 contentList.forEach(content => {
@@ -104,7 +97,6 @@ contentList.forEach(content => {
         {
             loadChart(7)
         }
-        $('.avg-chart-content-date').css('display', 'none')
     }
 });
 

@@ -6,8 +6,7 @@
     box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -25,35 +24,71 @@ body {
 
 #header-section {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
     min-height: 50px;
-    background: linear-gradient(to bottom, rgb(247, 255, 254), #fff);
+    background: linear-gradient(to right, rgb(18, 173, 148), rgb(26, 214, 158));
 }
 
-#header-section .sign-out {
-    display: block;
-    float: right;
+#header-section .user {
+    align-self: flex-end;
+    font-size: 25px;
+    margin-right: 20px
+}
+
+#header-section .user .user-setting {
+    display: none;
+    background-color: #fff;
     position: absolute;
-    right: 0;
-    line-height: 50px;
+    font-size: 16px;
+    min-width: 150px;
+    list-style-type: none;
+    right: 20px;
+    border-radius: 10px;
 }
 
-#header-section .fas.fa-sign-out-alt {
-    font-size: 20px;
-    padding: 15px;
-    color: black;
+#header-section .user .user-setting li, h5 {
+    padding: 10px 10px;
 }
 
+#header-section .user .user-setting h5 {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+}
+
+#header-section .user .user-setting a {
+    text-decoration: none;
+    color: #000;
+    display: inline-block;
+    margin-left: 20px;
+    /* float: right; */
+}
+
+#header-section .user .user-setting i {
+    display: block;
+}
+
+#header-section .drop-icon {
+    cursor: pointer;
+    list-style-type: none;
+    display: inline;
+}
+
+#header-section .user .user-setting li:hover {
+    opacity: 0.2;
+}
 
 /* Navigation section */
 
 #nav-section {
-    background: linear-gradient(240deg, rgb(64, 136, 184) ,rgb(23, 81, 168));
+    background: linear-gradient(240deg, rgb(64, 136, 184), rgb(23, 81, 168));
     flex: 1;
+    /* display: none; */
 }
 
 #nav-section .nav {
-    height: 100%;  
+    height: 100%;
     display: flex;
 }
 
@@ -112,10 +147,8 @@ body {
     display: inline-block;
 }
 
-
-
-
 /* Content section */
+
 #content {
     display: flex;
     flex-direction: row;
@@ -144,11 +177,9 @@ body {
     /* height: fit-content; */
     flex-direction: row;
     /* margin-left: 30px; */
-    margin-top: 40px;
+    margin-top: 30px;
     justify-content: space-around;
-    
 }
-
 
 #home-section .gauge {
     width: 500px;
@@ -168,11 +199,11 @@ body {
 }
 
 #home-section .gauge-temp .gauge_header {
-    background: linear-gradient(to right, rgb(224, 204, 149),rgb(253, 160, 132));
+    background: linear-gradient(to right, rgb(224, 204, 149), rgb(253, 160, 132));
 }
 
 #home-section .gauge-humid .gauge_header {
-    background: linear-gradient(to right, rgb(149, 224, 159),rgb(132, 199, 253));
+    background: linear-gradient(to right, rgb(149, 224, 159), rgb(132, 199, 253));
 }
 
 #home-section .gauge_header p {
@@ -182,14 +213,7 @@ body {
     font-size: 21px;
     font-weight: 500;
     overflow: hidden;
-    
-    /* border-bottom: 1px solid rgba(0, 0, 0, 0.1); */
-    /* background-color: #fff; */
-    /* background-clip: padding-box; */
-    /* margin: 0px -20px; */
 }
-
-
 
 #home-section .gauge.gauge-temp {
     margin-right: 20px;
@@ -200,7 +224,7 @@ body {
 }
 
 #home-section .avg-bar-chart-header {
-    background: linear-gradient(to right, rgb(149, 224, 224),rgb(132, 199, 253));
+    background: linear-gradient(to right, rgb(149, 224, 224), rgb(132, 199, 253));
     /* background-color: #fff; */
     padding: 10px 20px;
     margin-top: 30px;
@@ -209,6 +233,7 @@ body {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     width: 100%;
+    position: relative;
 }
 
 #home-section .avg-bar-chart-header p {
@@ -229,12 +254,13 @@ body {
     display: none;
     position: absolute;
     list-style-type: none;
-    right: 6%;
-    background-color: rgb(245, 245, 245);
+    right: 15px;
+    background-color: rgb(252, 252, 252);
     border: 1px solid rgba(0, 0, 0, 0.2);
     min-width: 150px;
     font-size: 17px;
     border-radius: 3px;
+    transition: visibility 1000ms;
 }
 
 #home-section .drop-down-icon {
@@ -250,7 +276,6 @@ body {
     transition: 0.5s;
 }
 
-
 #home-section .avg-chart-content-date li {
     padding: 8px 15px;
     cursor: pointer;
@@ -261,23 +286,23 @@ body {
     transform: scale(1.03);
     color: #fff;
     transition: 0.2s;
-
 }
 
-
-#home-section .toggle {
-    text-align: center;
-    line-height: 34px;
+#home-section .control {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+#home-section .control-container {
     background-color: #fff;
-    /* height: 90%; */
     width: fit-content;
     align-items: center;
-    /* padding: 15px 20px; */
-    margin-top: 40px;
-    border-radius: 10px;
-    margin-bottom: 40px;
+    text-align: center;
+    justify-content: center;
+    line-height: 34px;
+    margin-top: 30px;
     border-radius: 10px;
 }
 
@@ -294,7 +319,7 @@ body {
     color: #fff;
 }
 
-#home-section .toggle_content {
+#home-section .sprinkler_toggle {
     margin-bottom: 10px;
     border-bottom: 1px groove rgba(0, 0, 0, 0.1);
     padding: 15px 20px;
@@ -311,14 +336,128 @@ body {
     line-height: 50px;
 }
 
+#home-section .setting {
+    width: 100%;
+}
+
+#home-section .setting-content {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg ,rgb(94, 113, 199), rgb(148, 166, 224));
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: #fff;
+}
+
+#home-section .setting-content p {
+    width: fit-content;
+    display: inline;
+    float: left;
+}
+
+#home-section .setting-content label {
+    float: right;
+}
+
+#home-section .setting-content li {
+    padding: 20px;
+}
+
+#home-section .setting-content li + li {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#home-section .setting-content .switch {
+    height: 26px;
+    width: 55px;
+}
+
+/* Override toggle in home section */
+
+.setting-content input:checked+.slider:before {
+    transform: translateX(30px);
+}
+
+.setting-content .slider::before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    transition: .4s;
+}
+
+/* Section for setting setting in home page */
+
+.setting-header {
+    margin-top: 25px;
+    background-color: #fff;
+    list-style-type: none;
+    position: relative;
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.setting-header p {
+    width: fit-content;
+    display: inline;
+    /* margin-left: 10px; */
+    font-size: 20px;
+}
+
+.menu-toggle-icon {
+    float: right;
+    display: inline;
+    position: relative;
+    /* margin-right: 10px; */
+    font-size: 30px;
+    overflow: hidden;
+    outline: none;
+    cursor: pointer;
+    width: fit-content;
+}
+.menu-toggle-icon:hover {
+    transform: scale(1.2);
+    transition: 0.3s linear;
+}
+
+
+.toggle-all {
+    list-style-type: none;
+    right: -90px;
+    top: 50px;
+    position: absolute;
+    z-index: 1;
+    background-color: rgb(248, 248, 248);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: none;
+    min-width: 120px;
+}
+
+
+.toggle-all li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.toggle-all li:hover {
+    transform: scale(1.03);
+    transition: 0.3s ease;
+    background: linear-gradient(135deg, rgb(40, 133, 187), rgb(32, 123, 228));
+    color: #fff;
+}
 
 .sprinkler_icon {
-    margin-top: 90px;
-    font-size: 220px;
+    margin-top: 40px;
+    font-size: 180px;
     color: #ccc;
-    padding: 0px 10px;
+    padding: 10px 10px;
+    margin-bottom: 10px;
 }
-    
 
 /* Set-info section */
 
@@ -331,7 +470,6 @@ body {
     justify-content: center;
     flex: 7;
 }
-
 
 #set-info-section .slidecontainer {
     width: 100%;
@@ -393,14 +531,13 @@ body {
     display: flex;
     flex-direction: column;
     width: 60%;
-    padding: 50px;
+    padding: 40px;
     background-color: #fff;
     border-radius: 15px;
     align-items: center;
 }
 
-.slidecontainer .humidity,
-.slidecontainer .temperature{
+.slidecontainer .humidity, .slidecontainer .temperature {
     display: block;
     font-size: 22px;
     margin-bottom: 20px;
@@ -410,24 +547,16 @@ body {
     margin-left: 15px;
 }
 
-#set-info-section .gauge.gauge-temp,
-#set-info-section .gauge.gauge-humid{
+#set-info-section .gauge.gauge-temp, #set-info-section .gauge.gauge-humid {
     width: fit-content;
+    font-size: 30px;
 }
-
-#set-info-section i {
-    /* display: inline-block; */
-    color: #4e73df;
-    font-size: 22px;
-}
-
 
 .slidecontainer.humid {
     margin-top: 100px;
     /* margin-bottom: 100px; */
     margin-bottom: 50px;
 }
-
 
 /* Login section */
 
@@ -501,8 +630,7 @@ body {
     background-color: #ccc;
 }
 
-#username-error,
-#password-error {
+#username-error, #password-error {
     color: red;
     text-align: left;
     padding-top: 5px;
@@ -518,6 +646,7 @@ body {
 }
 
 /* Set-time section */
+
 #set-time-section {
     height: 100%;
     background-color: #bec6e9;
@@ -555,8 +684,8 @@ body {
     border-bottom: 1px groove rgba(204, 204, 204, 0.5);
 }
 
-
 /* Tables section */
+
 #table-section {
     background-color: #bec6e9;
     display: flex;
@@ -602,8 +731,7 @@ body {
     transition: 0.3s ease;
 }
 
-#temp_humid_data_previous,
-#temp_humid_data_next {
+#temp_humid_data_previous, #temp_humid_data_next {
     background-color: #2e79db;
     color: #fff !important;
     border-radius: 5px;
@@ -619,8 +747,8 @@ body {
     box-shadow: 1px 2px #ccc;
 }
 
-
 /* Chart section */
+
 #chart-section {
     height: 100%;
     background-color: #bec6e9;
@@ -635,7 +763,6 @@ body {
     width: 45%;
     height: 75%;
     margin-bottom: 80px;
-
 }
 
 #chart-section .chart-body {
@@ -643,21 +770,20 @@ body {
     height: 100%;
 }
 
-
 #chart-section .chart-container p {
     display: block;
     color: rgba(255, 255, 255, 1);
     font-size: 20px;
     font-weight: 600;
-    display: inline-block; 
+    display: inline-block;
 }
 
 #chart-section .header-container {
-    background: linear-gradient(to top, rgb(143, 219, 219),rgb(132, 215, 253));
+    background: linear-gradient(to top, rgb(143, 219, 219), rgb(132, 215, 253));
     padding: 20px;
     border-bottom: 1px groove;
-    border-top-right-radius: 5px;  
-    border-top-left-radius: 5px;  
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
 }
 
 #chart-section .chart {
@@ -670,9 +796,9 @@ body {
 #chart-section .export-btn {
     float: right;
     display: inline;
-    background-color:rgb(5, 82, 150) ;
+    background-color: rgb(5, 82, 150);
     padding: 6px 20px;
-    border: 1px solid rgba(0,0,0,0.5);
+    border: 1px solid rgba(0, 0, 0, 0.5);
     color: #fff;
     font-size: 16px;
     border-radius: 5px;
@@ -685,4 +811,3 @@ body {
     transform: scale(1.1);
     transition: 0.3s;
 }
-

@@ -25,6 +25,7 @@ if ($result == null) {
     <link rel="stylesheet" href="/src/gauge.css">
     <link rel="stylesheet" href="/src/slider.css">
     <link rel="stylesheet" href="/src/toast-message.css">
+    <link rel="stylesheet" href="/src/toggle.css">
     <link rel="stylesheet" href="/style.css">
     <script src="/src/icon.js"></script>
     <script src="/src/jquery-3.6.0.min.js"></script>
@@ -36,8 +37,14 @@ if ($result == null) {
         <div id="header-section">
             <img src="" alt="" class="logo">
 
-            <div class="sign-out">
-                <a href="/login.php"><i class="fas fa-sign-out-alt"></i></a>
+            <div class="user">
+                <i class="user-icon fal fa-user-circle"></i>
+                <li class="drop-icon"><i class="drop-icon fas fa-caret-down"></i></li>
+                <ul class="user-setting">
+                    <h5>Signed in as </br> <?php echo $_SESSION['user'] ?></h5>
+                    <li><i class="fas fa-user-alt"></i><a href="" class="setting">Your Profile</a></li>
+                    <li><i class="fas fa-sign-out-alt"></i><a href="/login.php">Sign out</a></li>
+                </ul>
             </div>
         </div>
 
@@ -59,6 +66,7 @@ if ($result == null) {
             </div>
 
             <div id="set-info-section">
+
                 <!--Temperature-->
                 <div class="set-info-container">
                     <div class="slidecontainer temp">
@@ -81,7 +89,7 @@ if ($result == null) {
                     <!--Humidity-->
                     <div class="slidecontainer humid">
                         <div class="gauge gauge-humid">
-                            <i class=" fal fa-humidity" style="color: #4e73df"></i>
+                            <i class="fal fa-humidity" style="color: #4e73df"></i>
                             <div class="humidity">
                                 <p>Humidity</p>
                             </div>
@@ -153,10 +161,19 @@ if ($result == null) {
     <script>
         $(document).ready(function() {
             var temp_value = $('#Temperature').val();
-            // console.log(temp_value)
             var humid_value = $('#Humidity').val();
             $('#Temperature').css('background', 'linear-gradient(to right, rgb(63, 63, 255) 0%, rgb(63, 63, 255) ' + temp_value + '%, #d3d3d3 ' + temp_value + '%, #d3d3d3 100%)');
             $('#Humidity').css('background', 'linear-gradient(to right, rgb(63, 63, 255) 0%, rgb(63, 63, 255) ' + humid_value + '%, #d3d3d3 ' + humid_value + '%, #d3d3d3 100%)');
         });
     </script>
+
+    <!-- Function to check if permit to submit -->
+    <script>
+        if (localStorage.getItem('paraState') === 'false') {
+            $('.set-info-btn').prop('disabled', true);
+        }
+    </script>
+
+    <script src="/src/control.js"></script>
+
 </body>

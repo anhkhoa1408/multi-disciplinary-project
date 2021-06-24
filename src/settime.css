@@ -1,13 +1,15 @@
 .container {
-    margin: 35px 40px;
-    width: 90%;
-    height: 140px;
-    padding: 10px 25px;
-    background: rgb(8, 139, 214);
-    border-radius: 15px;
-    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(0, 0, 0, 0.35), 0 8px 12px rgba(0, 0, 0, 0.15);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(0, 0, 0, 0.35), 0 8px 12px rgba(0, 0, 0, 0.15);
-    font-family: "Montserrat";
+  margin: 35px 40px;
+  width: 90%;
+  height: 140px;
+  padding: 10px 25px;
+  background: rgb(8, 139, 214);
+  border-radius: 15px;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(0, 0, 0, 0.35),
+    0 8px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(0, 0, 0, 0.35),
+    0 8px 12px rgba(0, 0, 0, 0.15);
+  font-family: "Montserrat";
 }
 
 .field-title {
@@ -33,7 +35,8 @@
   margin: 30px 0;
 }
 
-.range__slider::before, .range__slider::after {
+.range__slider::before,
+.range__slider::after {
   position: absolute;
   color: #fff;
   font-size: 0.9rem;
@@ -84,7 +87,7 @@
 .slider::-webkit-slider-thumb:hover {
   background: #d4d4d4;
   -webkit-transform: scale(1.2);
-          transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .button {
@@ -93,7 +96,7 @@
   background-color: rgba(38, 38, 230, 0.842);
   border: none;
   color: white;
-  padding: 15px 32px;  
+  padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -103,6 +106,6 @@
 
 .button:hover {
   background-color: rgba(38, 38, 230, 0.6);
-    transform: scale(1.05);
-    transition: 0.4s ease;
+  transform: scale(1.05);
+  transition: 0.4s ease;
 }

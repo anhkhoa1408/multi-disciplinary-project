@@ -90,6 +90,8 @@
         $get_latest_time = "SELECT `start_time`, `end_time` FROM `timesetting` WHERE `UserName`='$username' ORDER BY `ID` DESC LIMIT 0, 1";
         $time_query_result = $conn->query($get_latest_time) or die($conn->error);
         $latest_time = $time_query_result->fetch_assoc();
+        if ($latest_time['start_time'] == date('H:i', strtotime("00:00")) && $latest_time['end_time'] == date('H:i', strtotime("00:00")))
+            return false;
         if (date('H:i', time() + 7*60*60) >= $latest_time['start_time'] and date('H:i', time() + 7*60*60) <= $latest_time['end_time'])
             return true;
         return false;
@@ -98,7 +100,6 @@
     function check_para($username)
     {
         include '../connect-database.php';
-        // echo $username;
         $get_para = "SELECT `Temperature`, `Humidity` FROM `parameter` WHERE `UserName`='$username' ORDER BY `Time_Receive` DESC LIMIT 0, 1";
         $para_query_result = $conn->query($get_para) or die($conn->error);
         $para = $para_query_result->fetch_assoc();
@@ -108,6 +109,8 @@
         $min_para = $min_para_query_result->fetch_assoc();
         echo $para['Temperature'];".\n";
         echo $min_para['Temperature'];
+        if ($min_para['Temperature'] == 0 && $min_para['Humidity'] == 0)
+            return false;
         if ($para['Temperature'] >= $min_para['Temperature'])
             return TRUE;
         if ($para['Humidity'] <= $min_para['Humidity'])

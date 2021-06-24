@@ -9,7 +9,7 @@
     $getAVGData = "SELECT *
     FROM (SELECT AVG(`Temperature`) AS `Average_Temperature`, AVG(`Humidity`) AS `Average_Humidity`, DATE(`Time_Receive`) AS `Time`  
         FROM `parameter` 
-        WHERE `UserName` = 'anhkhoa1408' AND DATE(`Time_Receive`) = DATE(NOW() - INTERVAL '$day' DAY) 
+        WHERE `UserName` = '$userName' AND DATE(`Time_Receive`) = DATE(NOW() - INTERVAL '$day' DAY) 
         GROUP BY `Time`) 
     AS TEMPORARY";
 

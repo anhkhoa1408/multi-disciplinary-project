@@ -40,8 +40,14 @@ if ($result == null) {
         <div id="header-section">
             <img src="" alt="" class="logo">
 
-            <div class="sign-out">
-                <a href="/login.php"><i class="fas fa-sign-out-alt"></i></a>
+            <div class="user">
+                <i class="user-icon fal fa-user-circle"></i>
+                <li class="drop-icon"><i class="drop-icon fas fa-caret-down"></i></li>
+                <ul class="user-setting">
+                    <h5>Signed in as </br> <?php echo $_SESSION['user'] ?></h5>
+                    <li><i class="fas fa-user-alt"></i><a href="" class="setting">Your Profile</a></li>
+                    <li><i class="fas fa-sign-out-alt"></i><a href="/login.php">Sign out</a></li>
+                </ul>
             </div>
         </div>
 
@@ -157,6 +163,16 @@ if ($result == null) {
             $('.end-slider .slider').css('background', 'linear-gradient(to right, rgb(90, 223, 183) 0%, rgb(90, 223, 183) ' + (end_value / 1440) * 100 + '%, #d3d3d3 ' + (end_value / 1440) * 100 + '%, #d3d3d3 100%)');
         });
     </script>
+
+    <!-- Function to check if permit to submit -->
+    <script>
+        if (localStorage.getItem('timeState') === 'false') {
+            $('.button.set-time-btn').prop('disabled', true);
+        }
+    </script>
+
+    <script src="/src/control.js"></script>
+
 </body>
 
 </html>

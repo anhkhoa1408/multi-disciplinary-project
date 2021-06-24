@@ -18,6 +18,7 @@ session_start();
     <link rel="stylesheet" href="/src/toast-message.css">
     <link rel="stylesheet" href="/style.css">
     <script src="/src/jquery-3.6.0.min.js"></script>
+    <script src="/src/icon.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -27,8 +28,14 @@ session_start();
         <div id="header-section">
             <img src="" alt="" class="logo">
 
-            <div class="sign-out">
-                <a href="/login.php"><i class="fas fa-sign-out-alt"></i></a>
+            <div class="user">
+                <i class="user-icon fal fa-user-circle"></i>
+                <li class="drop-icon"><i class="drop-icon fas fa-caret-down"></i></li>
+                <ul class="user-setting">
+                    <h5>Signed in as </br> <?php echo $_SESSION['user'] ?></h5>
+                    <li><i class="fas fa-user-alt"></i><a href="" class="setting">Your Profile</a></li>
+                    <li><i class="fas fa-sign-out-alt"></i><a href="/login.php">Sign out</a></li>
+                </ul>
             </div>
         </div>
 
@@ -47,41 +54,72 @@ session_start();
 
             <!-- Content section -->
             <div id="home-section">
-
                 <!-- button ON/OFF -->
-                <div class="toggle">
-                    <!-- <p class="off-switch">OFF</p> -->
-                    <div class="toggle_content">
-                        <p class="toggle_header">Realtime Control</p>
-                        <label class="switch">
-                            <input id="switch-btn" type="checkbox">
-                            <span class="slider round"></span>
-                        </label>
+                <div class="control">
+                    <div class="control-container">
+                        <div class="sprinkler_toggle">
+                            <p class="toggle_header">Realtime Control</p>
+                            <label class="switch switch-sprinkler">
+                                <input id="switch-btn" type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                        <div class="clock-container">
+                            <div class="hours">
+                                <span>Hours</span>
+                                <p id='hour'> 00 </p>
+                            </div>
+                            <div class="colon"></div>
+                            <div class="minutes">
+                                <span>Minutes</span>
+                                <p id='minute'> 00 </p>
+                            </div>
+                            <div class="colon"></div>
+                            <div class="seconds">
+                                <span>Seconds</span>
+                                <p id='second'> 00 </p>
+                            </div>
+
+                            <div class="bottom">
+                                <div class="progress-bar" id="progress"></div>
+                            </div>
+                        </div>
+
+
+
+                        <i class="fas fa-sprinkler sprinkler_icon"></i>
+
                     </div>
 
-                    <div class="clock-container">
-                        <div class="hours">
-                            <span>Hours</span>
-                            <p id='hour'> 00 </p>
+                    <div class="setting">
+                        <div class="setting-header">
+                            <p>Automatic</p>
+                            <li class="menu-toggle-icon"><i class="menu-toggle-icon fal fa-ellipsis-v"></i></li>
+                            <ul class="toggle-all">
+                                <li id="toggle-on-all">All on</li>
+                                <li id="toggle-off-all">All off</li>
+                            </ul>
                         </div>
-                        <div class="colon"></div>
-                        <div class="minutes">
-                            <span>Minutes</span>
-                            <p id='minute'> 00 </p>
-                        </div>
-                        <div class="colon"></div>
-                        <div class="seconds">
-                            <span>Seconds</span>
-                            <p id='second'> 00 </p>
-                        </div>
+                        <ul class="setting-content">
+                            <li>
+                                <p>Check Time</p>
+                                <label class="switch switch-para">
+                                    <input id="switch-time-btn" type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <p>Check Parameter</p>
+                                <label class="switch switch-para">
+                                    <input id="switch-para-btn" type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </li>
+                        </ul>
                     </div>
-
-                    <div class="bottom">
-                        <div class="progress-bar" id="progress"></div>
-                    </div>
-
-                    <i class="fas fa-sprinkler sprinkler_icon"></i>
                 </div>
+
 
                 <div class="gauge-chart-container">
                     <div class="gauge-container">
@@ -121,12 +159,7 @@ session_start();
                         </canvas>
                     </div>
                 </div>
-
-
-
             </div>
-
-
         </div>
 
         <div id="toast"></div>
@@ -185,12 +218,12 @@ session_start();
                     buttonState = 1;
                     $('.sprinkler_icon').css('color', '#4e73df');
                     $('.sprinkler_icon').css('transition', '0.8s');
-                    $('.slider').css('--col', 'rgb(76, 228, 76)')
+                    $('.switch-sprinkler .slider').css('--col', 'rgb(76, 228, 76)')
                     showSuccessToast("Sprinkler is on")
                 } else {
                     buttonState = 0;
                     $('.sprinkler_icon').css('color', '#ccc');
-                    $('.slider').css('--col', 'red')
+                    $('.switch-sprinkler .slider').css('--col', 'red')
                     showSuccessToast("Sprinkler is off")
                 }
 
@@ -209,6 +242,20 @@ session_start();
                 });
             })
         })
+
+        // var temp = localStorage.getItem('timeState') === "true" ? true : false;
+        // console.log(typeof temp)
+        if (localStorage.getItem('timeState') === "true")
+        {
+            $('#switch-time-btn').prop('checked', true);
+            $('#switch-time-btn + .slider').css('--col', 'rgb(76, 228, 76)');
+        }
+
+        if (localStorage.getItem('paraState') === "true")
+        {
+            $('#switch-para-btn').prop('checked', true);
+            $('#switch-para-btn + .slider').css('--col', 'rgb(76, 228, 76)');
+        }
     </script>
 
     <!-- Load BUTTON ON/OFF state from user -->
@@ -218,11 +265,11 @@ session_start();
                 url: 'Server/get-relay-state.php',
                 type: 'GET',
                 success: function(data) {
-                    console.log("Get state successfully");
+                    console.log("Get state successfully", data);
                     if (data == 1) {
                         $('#switch-btn').prop('checked', true);
                         $('.sprinkler_icon').css('color', '#4e73df');
-                        $('.slider').css('--col', 'rgb(76, 228, 76)')
+                        $('.switch-sprinkler .slider').css('--col', 'rgb(76, 228, 76)')
                     }
                 },
                 error: function() {
@@ -234,7 +281,7 @@ session_start();
         window.setInterval(getBtnState, 20000);
     </script>
 
-
+    <script src="/src/control.js"></script>
 
 </body>
 
