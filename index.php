@@ -281,6 +281,42 @@ session_start();
         window.setInterval(getBtnState, 20000);
     </script>
 
+    <!-- Load Check BUTTON ON/OFF state from user -->
+    <script>
+        function getBtnState() {
+            $.ajax({
+                url: 'Server/get_user_toggle.php',
+                type: 'GET',
+                success: function(data) {
+                    console.log("Get toggle state successfully", data);
+                    if (data[0] == "1")
+                    {
+                        $('#switch-time-btn + .slider').css('--col', 'rgb(76, 228, 76)');
+                        localStorage.setItem('timeState', "true");
+                    }
+                    else
+                    {
+                        $('#switch-time-btn + .slider').css('--col', 'red')
+                        localStorage.setItem('timeState', "false");
+                    }
+                    if (data[1] == "1")
+                    {
+                        $('#switch-para-btn + .slider').css('--col', 'rgb(76, 228, 76)');
+                        localStorage.setItem('paraState', "true");
+                    }
+                    else
+                    {
+                        $('#switch-para-btn + .slider').css('--col', 'red');
+                        localStorage.setItem('paraState', "false");
+                    }
+                },
+                error: function() {
+                    console.log('error');
+                }
+            })
+        }
+    </script>
+
     <script src="/src/control.js"></script>
 
 </body>
