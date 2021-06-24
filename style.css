@@ -304,6 +304,7 @@ html, body {
     line-height: 34px;
     margin-top: 30px;
     border-radius: 10px;
+    height: 60%;
 }
 
 #home-section .off-switch {
@@ -330,7 +331,7 @@ html, body {
 
 #home-section .toggle_header {
     display: inline-block;
-    color: #ffffff;
+    color: #000;
     font-size: 22px;
     margin-right: 20px;
     line-height: 50px;
@@ -344,7 +345,7 @@ html, body {
     list-style-type: none;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(135deg ,rgb(94, 113, 199), rgb(148, 166, 224));
+    background: linear-gradient(135deg, rgb(148, 166, 224) ,rgb(94, 113, 199));
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     color: #fff;
@@ -810,4 +811,53 @@ html, body {
     opacity: 0.8;
     transform: scale(1.1);
     transition: 0.3s;
+}
+
+
+/* @media only screen and (max-width: 1400px) {
+    #nav-section .nav a {
+        line-height: 20px;
+        font-size: 15px;
+        text-decoration: none;
+    }
+
+    #nav-section {
+        display: none;
+    }
+} */
+
+
+
+@media only screen and (min-height: 600px) and (max-height: 750px) {
+    .control {
+        height: 90%;
+    }
+
+    .sprinkler_icon {
+        margin-top: 15px;
+        font-size: 120px;
+        color: #ccc;
+        margin-bottom: 0px;
+    }
+
+    .gauge {
+        max-width: 350px;
+    }
+
+    .gauge-chart-container {
+        height: 90%;
+    }
+
+    #set-time-container {
+        height: 90%;
+    }
+
+    #set-time-container .container {
+        width: 90%;
+        height: 130px;
+    }
+
+    #set-time-container .button {
+        margin-top: 0px;
+    }
 }
