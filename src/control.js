@@ -120,13 +120,29 @@ $('#toggle-on-all').click(function() {
     {
         $('#switch-para-btn').prop('checked', true);
         $('#switch-para-btn + .slider').css('--col', 'rgb(76, 228, 76)');
-        localStorage.setItem('timeState', true);
+        localStorage.setItem('paraState', true);
+        $.ajax({
+            url: 'Server/user_toggle.php',
+            type: 'POST',
+            data: {
+                type: "toggle_para",
+                state: 1
+            },
+        });
     }
     if($('#switch-time-btn').prop('checked') === false)
     {
         $('#switch-time-btn').prop('checked', true);
         $('#switch-time-btn + .slider').css('--col', 'rgb(76, 228, 76)');
-        localStorage.setItem('paraState', true);
+        localStorage.setItem('timeState', true);
+        $.ajax({
+            url: 'Server/user_toggle.php',
+            type: 'POST',
+            data: {
+                type: "toggle_time",
+                state: 1
+            },
+        });
     }
 })
 
@@ -135,12 +151,41 @@ $('#toggle-off-all').click(function() {
     {
         $('#switch-para-btn').prop('checked', false);
         $('#switch-para-btn + .slider').css('--col', 'red');
-        localStorage.setItem('timeState', false);
+        localStorage.setItem('paraState', false);
+        $.ajax({
+            url: 'Server/user_toggle.php',
+            type: 'POST',
+            data: {
+                type: "toggle_para",
+                state: 0
+            },
+        });
     }
     if($('#switch-time-btn').prop('checked') === true)
     {
         $('#switch-time-btn').prop('checked', false);
         $('#switch-time-btn + .slider').css('--col', 'red');
-        localStorage.setItem('paraState', false);
+        localStorage.setItem('timeState', false);
+        $.ajax({
+            url: 'Server/user_toggle.php',
+            type: 'POST',
+            data: {
+                type: "toggle_time",
+                state: 0
+            },
+        });
+    }
+})
+
+
+$('.nav-toggle').click(function() {
+    var navToggle = document.querySelector('#nav-section');
+    console.log(navToggle.classList)
+    if (navToggle.classList.contains('close')) {
+        navToggle.classList.remove('close')
+        navToggle.classList.add('open')
+    } else {
+        navToggle.classList.remove('open')
+        navToggle.classList.add('close')
     }
 })

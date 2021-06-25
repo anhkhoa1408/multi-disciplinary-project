@@ -10,6 +10,7 @@
     if ($row) {
         $message = 1;
         $_SESSION['user'] = $name;
+        $_SESSION['pass'] = $pass;
     }
     echo $message;
 ?>

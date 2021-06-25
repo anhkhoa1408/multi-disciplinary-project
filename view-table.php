@@ -20,14 +20,21 @@
     <div id="main">
         <!-- Header section -->
         <div id="header-section">
-            <img src="" alt="" class="logo">
+            <!-- <img src="" alt="" class="logo"> -->
+
+            <div class="nav-toggle">
+                <i class="fal fa-bars"></i>
+            </div>
 
             <div class="user">
                 <i class="user-icon fal fa-user-circle"></i>
                 <li class="drop-icon"><i class="drop-icon fas fa-caret-down"></i></li>
                 <ul class="user-setting">
-                    <h5>Signed in as </br> <?php echo $_SESSION['user'] ?></h5>
-                    <li><i class="fas fa-user-alt"></i><a href="" class="setting">Your Profile</a></li>
+                    <?php 
+                        if (isset($_SESSION['user']))
+                            echo "<h5>Signed in as </br>".strval($_SESSION['user'])."</h5>";
+                    ?>
+                    <li><i class="fas fa-user-alt"></i><a href="/edit-profile.php" class="setting">Your Profile</a></li>
                     <li><i class="fas fa-sign-out-alt"></i><a href="/login.php">Sign out</a></li>
                 </ul>
             </div>
@@ -70,7 +77,7 @@
     <script>
         $(document).ready(function() {
             $('#temp_humid_data').DataTable({
-                "responsive": false,
+                "responsive": true,
                 "processing": true,
                 "sAjaxSource": "export-table.php",
                 "dom": 'lBfrtip',

@@ -26,14 +26,20 @@ session_start();
     <div id="main">
         <!-- Header section -->
         <div id="header-section">
-            <img src="" alt="" class="logo">
+            <!-- <img src="" alt="" class="logo"> -->
+            <div class="nav-toggle">
+                <i class="fal fa-bars"></i>
+            </div>
 
             <div class="user">
                 <i class="user-icon fal fa-user-circle"></i>
                 <li class="drop-icon"><i class="drop-icon fas fa-caret-down"></i></li>
                 <ul class="user-setting">
-                    <h5>Signed in as </br> <?php echo $_SESSION['user'] ?></h5>
-                    <li><i class="fas fa-user-alt"></i><a href="" class="setting">Your Profile</a></li>
+                    <?php 
+                        if (isset($_SESSION['user']))
+                            echo "<h5>Signed in as </br>".strval($_SESSION['user'])."</h5>";
+                    ?>
+                    <li><i class="fas fa-user-alt"></i><a href="/edit-profile.php" class="setting">Your Profile</a></li>
                     <li><i class="fas fa-sign-out-alt"></i><a href="/login.php">Sign out</a></li>
                 </ul>
             </div>
@@ -95,7 +101,7 @@ session_start();
                     <div class="setting">
                         <div class="setting-header">
                             <p>Automatic</p>
-                            <li class="menu-toggle-icon"><i class="menu-toggle-icon fal fa-ellipsis-v"></i></li>
+                            <li class="menu-toggle-icon"><i class="menu-toggle-icon fal fa-ellipsis-h"></i></li>
                             <ul class="toggle-all">
                                 <li id="toggle-on-all">All on</li>
                                 <li id="toggle-off-all">All off</li>
@@ -265,7 +271,7 @@ session_start();
                 url: 'Server/get-relay-state.php',
                 type: 'GET',
                 success: function(data) {
-                    console.log("Get state successfully", data);
+                    // console.log("Get state successfully", data);
                     if (data == 1) {
                         $('#switch-btn').prop('checked', true);
                         $('.sprinkler_icon').css('color', '#4e73df');
@@ -283,14 +289,15 @@ session_start();
 
     <!-- Load Check BUTTON ON/OFF state from user -->
     <script>
-        function getBtnState() {
+        function getCheckBtnState() {
             $.ajax({
                 url: 'Server/get_user_toggle.php',
                 type: 'GET',
                 success: function(data) {
-                    console.log("Get toggle state successfully", data);
+                    // console.log("Get toggle state successfully", data);
                     if (data[0] == "1")
                     {
+                        $('#switch-time-btn').prop('checked', true);
                         $('#switch-time-btn + .slider').css('--col', 'rgb(76, 228, 76)');
                         localStorage.setItem('timeState', "true");
                     }
@@ -301,6 +308,7 @@ session_start();
                     }
                     if (data[1] == "1")
                     {
+                        $('#switch-para-btn').prop('checked', true);
                         $('#switch-para-btn + .slider').css('--col', 'rgb(76, 228, 76)');
                         localStorage.setItem('paraState', "true");
                     }
@@ -315,6 +323,8 @@ session_start();
                 }
             })
         }
+
+        getCheckBtnState()
     </script>
 
     <script src="/src/control.js"></script>
