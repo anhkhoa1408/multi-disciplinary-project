@@ -12,7 +12,7 @@
         $sub[] = $result['Average_Temperature'];
         $sub[] = $result['Average_Humidity'];
         $sub[] = $result['Time'];
-        $sub[] = "<button id=".strval($result['Time'])."><i class=\"fal fa-eye-slash\"></i> Hide</button>";
+        $sub[] = "<button id=".strval($result['Time'])."><i class=\"fas fa-eye-slash\"></i> Hide</button>";
         $data[] = $sub;
     }
 

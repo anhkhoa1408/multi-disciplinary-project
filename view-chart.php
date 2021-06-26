@@ -59,7 +59,7 @@ session_start();
                 <div class="temp chart-container">
                     <div class="header-container">
                         <p class="header">Temperature Overview</p>
-                        <button class="export-btn">Export</button>
+                        <button class="export-btn"><i class="fas fa-images"></i> Export</button>
                     </div>
 
                     <div class="chart-body">
@@ -71,7 +71,7 @@ session_start();
                 <div class="humid chart-container">
                     <div class="header-container">
                         <p class="header">Humidity Overview</p>
-                        <button class="export-btn">Export</button>
+                        <button class="export-btn"><i class="fas fa-images"></i> Export</button>
                     </div>
 
                     <div class="chart-body">

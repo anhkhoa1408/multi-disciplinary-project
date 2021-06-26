@@ -88,7 +88,7 @@ session_start();
                 "dom": 'lBfrtip',
                 "buttons": [{
                         extend: 'collection',
-                        text: 'Export',
+                        text: '<i class="fas fa-file-export"></i> Export',
                         buttons: [{
                                 extend: 'excel',
                                 exportOptions: {
@@ -114,7 +114,7 @@ session_start();
                     },
                     {
                         extend: 'colvis',
-                        text: 'Visibility'
+                        text: '<i class="fas fa-eye"></i> Visibility'
                     }
                 ],
                 'columnDefs': [{
