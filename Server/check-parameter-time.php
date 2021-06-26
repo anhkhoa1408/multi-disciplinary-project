@@ -28,9 +28,12 @@
     {
         if ($user["UserName"] == 'CSE_BBC')
             continue;
+        
+        echo $user["UserName"]."\n";
+
         $is_relay_on = get_relay_state($user["UserName"], $user["AIOKey"]);
         $relay_state = ($user["toggle_time"] && check_time($user["UserName"])) || ($user["toggle_para"] && check_para($user["UserName"]));
-        echo $relay_state;
+        echo "Relay state: ".($relay_state?"1":"0")."\n";
         if (($is_relay_on == 1 and $relay_state == FALSE) or ($is_relay_on == 0 and $relay_state == TRUE))
         {
             require('phpMQTT.php');
@@ -49,7 +52,6 @@
                 echo "Time out!\n";
             }
         }
-
     }
 
     function get_relay_state($username, $aiokey)
@@ -90,10 +92,12 @@
         $get_latest_time = "SELECT `start_time`, `end_time` FROM `timesetting` WHERE `UserName`='$username' ORDER BY `ID` DESC LIMIT 0, 1";
         $time_query_result = $conn->query($get_latest_time) or die($conn->error);
         $latest_time = $time_query_result->fetch_assoc();
-        if ($latest_time['start_time'] == date('H:i', strtotime("00:00")) && $latest_time['end_time'] == date('H:i', strtotime("00:00")))
-            return false;
-        if (date('H:i', time() + 7*60*60) >= $latest_time['start_time'] and date('H:i', time() + 7*60*60) <= $latest_time['end_time'])
-            return true;
+        date_default_timezone_set('UTC');
+        if ($latest_time)
+        {
+            if (date('H:i:s', time() + 7*60*60) >= $latest_time['start_time'] and date('H:i:s', time() + 7*60*60) <= $latest_time['end_time'])
+                return true;
+        }
         return false;
     }
 
@@ -107,14 +111,13 @@
         $get_min_para = "SELECT `Temperature`, `Humidity` FROM `minimumparam` WHERE `UserName`='$username' ORDER BY `Created` DESC LIMIT 0, 1";
         $min_para_query_result = $conn->query($get_min_para) or die($conn->error);
         $min_para = $min_para_query_result->fetch_assoc();
-        echo $para['Temperature'];".\n";
-        echo $min_para['Temperature'];
-        if ($min_para['Temperature'] == 0 && $min_para['Humidity'] == 0)
-            return false;
-        if ($para['Temperature'] >= $min_para['Temperature'])
-            return TRUE;
-        if ($para['Humidity'] <= $min_para['Humidity'])
-            return TRUE;
+        if ($min_para)
+        {
+            if ($para['Temperature'] >= $min_para['Temperature'])
+                return TRUE;
+            if ($para['Humidity'] <= $min_para['Humidity'])
+                return TRUE;
+        }
         return FALSE;
     }
 
