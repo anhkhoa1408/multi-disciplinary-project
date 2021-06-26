@@ -9,7 +9,7 @@
 
     // For each user, get humid-temp feed data and store in db
     foreach($all_user as $index => $user) {
-        // echo $user['UserName'];
+        echo $user['UserName'];
         get_temp_humid($user["UserName"], $user["AIOKey"]);
     }
 
@@ -84,7 +84,7 @@
             // Key: expiration -       Value: 2021-06-22T07:42:13Z
             
             // Find id
-            // $id = $result->id;
+            $id = $result->id;
             // $id_query = "SELECT `ID` FROM `parameter` WHERE `ID`='$id'";
             // $result = $conn->query($id_query) or die($conn->error);
             // if ($result) continue;
@@ -96,9 +96,12 @@
             $time = date("Y-m-d H:i:s", strtotime($result->created_at) + 7*60*60);
             // echo $user;
             $sql = "INSERT INTO `parameter` (`Temperature`, `Humidity`, `Time_Receive`, `UserName`) VALUES ('$temp', '$humidity', '$time', '$name')";
-            $result = $conn->query($sql) or die($conn->error);
+            $result = $conn->query($sql);
             if ($result) {
                 echo "ID: " . $id . " is added.\n";
+            }
+            else {
+                echo "Duplicated data.  ";
             }
         }
     }
