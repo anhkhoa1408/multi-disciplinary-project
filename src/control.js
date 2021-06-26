@@ -180,12 +180,13 @@ $('#toggle-off-all').click(function() {
 
 $('.nav-toggle').click(function() {
     var navToggle = document.querySelector('#nav-section');
-    // console.log(navToggle.classList)
-    if (navToggle.classList.contains('close')) {
-        navToggle.classList.remove('close')
-        navToggle.classList.add('open')
-    } else {
-        navToggle.classList.remove('open')
-        navToggle.classList.add('close')
+    var navStyle = window.getComputedStyle(navToggle, null).getPropertyValue("display");
+    if (navStyle === 'block')
+    {
+        navToggle.style.display = 'none';
+    }
+    else 
+    {
+        navToggle.style.display = 'block';
     }
 })
