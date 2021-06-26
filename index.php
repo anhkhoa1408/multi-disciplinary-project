@@ -48,7 +48,7 @@ session_start();
         <!-- Navigation section -->
         <div id="content">
             <div id="nav-section">
-                <i class="nav-icon far fa-raindrops"></i>
+                <i class="nav-icon fas fa-raindrops"></i>
                 <ul class="nav">
                     <li><a href="/index.php" class="home-page"><i class="btn fas fa-home"></i>Home</a></li>
                     <li><a href="/setinfo.php" class="set-info-page"><i class="btn fas fa-sliders-h"></i>Parameter</a></li>

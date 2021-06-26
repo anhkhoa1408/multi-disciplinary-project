@@ -180,7 +180,7 @@ $('#toggle-off-all').click(function() {
 
 $('.nav-toggle').click(function() {
     var navToggle = document.querySelector('#nav-section');
-    console.log(navToggle.classList)
+    // console.log(navToggle.classList)
     if (navToggle.classList.contains('close')) {
         navToggle.classList.remove('close')
         navToggle.classList.add('open')

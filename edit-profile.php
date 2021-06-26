@@ -36,7 +36,10 @@ session_start();
                 <i class="user-icon fal fa-user-circle"></i>
                 <li class="drop-icon"><i class="drop-icon fas fa-caret-down"></i></li>
                 <ul class="user-setting">
-                    <h5>Signed in as </br> <?php echo $_SESSION['user'] ?></h5>
+                    <?php
+                    if (isset($_SESSION['user']))
+                        echo "<h5>Signed in as </br>" . strval($_SESSION['user']) . "</h5>";
+                    ?>
                     <li><i class="fas fa-user-alt"></i><a href="" class="setting">Your Profile</a></li>
                     <li><i class="fas fa-sign-out-alt"></i><a href="/login.php">Sign out</a></li>
                 </ul>
@@ -46,7 +49,7 @@ session_start();
         <!-- Navigation section -->
         <div id="content">
             <div id="nav-section">
-                <i class="nav-icon far fa-raindrops"></i>
+                <i class="nav-icon fas fa-raindrops"></i>
                 <ul class="nav">
                     <li><a href="/index.php" class="home-page"><i class="btn fas fa-home"></i>Home</a></li>
                     <li><a href="/setinfo.php" class="set-info-page"><i class="btn fas fa-sliders-h"></i>Parameter</a></li>
@@ -132,8 +135,6 @@ session_start();
     <!-- Function to handle Password -->
     <script>
         var validPassword = "<?php echo $_SESSION['pass'] ?>";
-        // console.log(validPassword)
-
         function handlePassword() {
             var currentPassword = $("input[name='currentPassword']").val();
             var newPassword = $("input[name='newPassword']").val();
@@ -177,7 +178,6 @@ session_start();
                     password: newPassword
                 },
                 success: function(message) {
-                    // console.log(message)
                     if (message === "1")
                         showSuccessToast("Update password successfully");
                     else
@@ -189,23 +189,9 @@ session_start();
 
 
     <script>
-        // var validPassword = "<?php echo $_SESSION['pass'] ?>";
-        // console.log(validPassword)
-
         function handleKey() {
-            // var currentPassword = $("input[name='currentPassword']").val();
             var newKey = $("input[name='newKey']").val();
             var repeatKey = $("input[name='repeatKey']").val();
-
-            // if (currentPassword === '') {
-            //     $('#currentPassword-error').prop('innerHTML', 'You must fill out this field!');
-            //     return;
-            // } else if (currentPassword !== validPassword) {
-            //     $('#currentPassword-error').prop('innerHTML', 'Your current password is not correct!');
-            //     return;
-            // } else {
-            //     $('#currentPassword-error').prop('innerHTML', '');
-            // }
 
             if (newKey === '') {
                 $('#newKey-error').prop('innerHTML', 'You must fill out this field!');
@@ -246,7 +232,6 @@ session_start();
 
     <script>
         $('.profile-menu ul li').first().click(function() {
-            console.log(1)
             $('.password-content').css('display', 'flex')
             $('.profile-menu ul li').first().css({
                 'background-color': 'rgb(226, 250, 237)',
@@ -260,7 +245,6 @@ session_start();
         })
 
         $('.profile-menu ul li').last().click(function() {
-            console.log(2)
             $('.password-content').css('display', 'none');
             $('.profile-menu ul li').first().css({
                 'background-color': '#fff',
@@ -274,10 +258,7 @@ session_start();
         })
     </script>
 
-    <!--  -->
     <script src="/src/control.js"></script>
-
-
 
     <script src="/src/toast-message.js"></script>
 
