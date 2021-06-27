@@ -86,14 +86,14 @@ if ($result == null) {
 
                     <div class="container">
                         <div class="range__slider start-slider">
-                            <div class="length__title field-title" data-length=<?php echo $startTime ?>>Start Time : </div>
+                            <div class="length__title field-title" data-length=<?php echo $startTime ?>>Start Time :</div>
                             <input class="slider" type="range" min="0" max="1439" value=<?php echo $start_value ?> />
                         </div>
                     </div>
 
                     <div class="container">
                         <div class="range__slider end-slider">
-                            <div class="length__title field-title" data-length=<?php echo $endTime ?>>End Time : </div>
+                            <div class="length__title field-title" data-length=<?php echo $endTime ?>>End Time :</div>
                             <input class="slider" type="range" min="0" max="1439" value=<?php echo $end_value ?> />
                         </div>
                     </div>
