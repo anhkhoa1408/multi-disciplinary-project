@@ -494,6 +494,7 @@ h5 {
   background-color: #bbc7ff;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   flex: 7;
 }
@@ -552,7 +553,7 @@ h5 {
 }
 
 .set-info-container {
-  margin: auto;
+  /* margin: auto; */
   display: flex;
   flex-direction: column;
   width: 60%;
@@ -1121,7 +1122,7 @@ span > .paginate_button.current:hover {
   /* Responsive set time section */
 
   #set-time-container {
-    height: 90%;
+    height: 80%;
     padding: 10px;
   }
 
@@ -1197,6 +1198,7 @@ span > .paginate_button.current:hover {
   
   .gauge {
     max-width: 52%;
+    font-size: 30px;
   }
 
   .sprinkler_icon {
@@ -1256,23 +1258,41 @@ span > .paginate_button.current:hover {
   .sprinkler_icon {
     font-size: 100px;
   }
+
+  #set-time-section .container {
+    height: 120px;
+    margin: 25px;
+  }
 }
 
 @media only screen and (max-width: 700px) and (max-height: 700px) {
+
+  /* Responsive navigation section */
+
+  #nav-section .nav a {
+    font-size: 14px;
+  }
+
+  #nav-section .sprinkler_icon {
+    margin-top: 25px;
+    font-size: 80px;
+    color: #ccc;
+    margin-bottom: 10px;
+  }
 
   /* Responsive set time section */
 
   #set-time-section #set-time-container {
     margin-top: 30px;
     width: 92%;
-    height: 85%;
+    height: 80%;
   }
 
   /* Responsive set info section */
 
   #set-info-section .set-info-container {
-    margin-top: 70px;
+    /* margin-top: 70px; */
     width: 92%;
-    height: 80%;
+    height: 70%;
   }
 }
