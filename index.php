@@ -284,7 +284,7 @@ session_start();
             })
         }
         getBtnState();
-        window.setInterval(getBtnState, 20000);
+        window.setInterval(getBtnState, 5000);
     </script>
 
     <!-- Load Check BUTTON ON/OFF state from user -->

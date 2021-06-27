@@ -13,7 +13,7 @@ $(document).ready(function () {
                 let time = new Date(newData[i].Time);
                 tempData.push(newData[i].Average_Temperature);
                 humidData.push(newData[i].Average_Humidity);
-                timeData.push(time.getDate() + '/' + time.getMonth() + '/' + time.getFullYear());
+                timeData.push(time.getDate() + '/' + (parseInt(time.getMonth()) + 1).toString() + '/' + time.getFullYear());
             }
 
             var temp = {
@@ -53,7 +53,7 @@ $(document).ready(function () {
                         title: {
                             display: true,
                             text: 'Day',
-                            color: 'rgba(0, 0, 0, 0.7)',
+                            color: 'rgba(0, 0, 0, 0.8)',
                             font: {
                                 size: 16
                             }
@@ -68,7 +68,7 @@ $(document).ready(function () {
                         title: {
                             display: true,
                             text: 'Temperature',
-                            color: 'rgba(0, 0, 0, 0.7)',
+                            color: 'rgba(0, 0, 0, 0.8)',
                             font: {
                                 size: 16
                             }
@@ -87,7 +87,7 @@ $(document).ready(function () {
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Last updated ' + date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear(),
+                        text: 'Last updated ' + date.getDate() + '/' + (parseInt(date.getMonth()) + 1).toString() + '/' + date.getFullYear(),
                         position: 'bottom',
                         align: 'start',
                         padding: {
@@ -143,7 +143,7 @@ $(document).ready(function () {
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Last updated ' + date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear(),
+                        text: 'Last updated ' + date.getDate() + '/' + (parseInt(date.getMonth()) + 1).toString() + '/' + date.getFullYear(),
                         position: 'bottom',
                         align: 'start',
                         padding: {

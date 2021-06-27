@@ -1,5 +1,4 @@
 var tempGraph
-
 function loadChart(interval) {
     var date = new Date();
     $.ajax({
@@ -54,7 +53,7 @@ function loadChart(interval) {
                     },
                     title: {
                         display: true,
-                        text: 'Last updated ' + date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear(),
+                        text: 'Last updated ' + date.getDate() + '/' + (parseInt(date.getMonth()) + 1).toString() + '/' + date.getFullYear(),
                         position: 'bottom',
                         align: 'start',
                         padding: {
@@ -79,6 +78,11 @@ function loadChart(interval) {
             })
         }
     })
+}
+
+window.onresize = function() {
+    if (tempGraph)
+        tempGraph.resize(830, 295)
 }
 
 
