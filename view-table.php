@@ -82,6 +82,7 @@ session_start();
         var datatable;
         $(document).ready(function() {
             datatable = $('#temp_humid_data').DataTable({
+                "order": [[ 2, "asc" ]],
                 "responsive": true,
                 "processing": true,
                 "sAjaxSource": "export-table.php",

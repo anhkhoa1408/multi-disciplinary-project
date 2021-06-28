@@ -1,6 +1,7 @@
 var tempGraph
 function loadChart(interval) {
     var date = new Date();
+    date.setDate(date.getDate() - interval)
     $.ajax({
         type: "POST",
         url: 'get-avg-data.php',
@@ -60,7 +61,7 @@ function loadChart(interval) {
                             top: 20
                         },
                         font: {
-                            size: 13,
+                            size: 14,
                             weight: '500'
                         }
                     }

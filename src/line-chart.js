@@ -94,7 +94,7 @@ $(document).ready(function () {
                             top: 10
                         },
                         font: {
-                            size: 12,
+                            size: 13,
                             weight: '500'
                         }
                     }
@@ -150,7 +150,7 @@ $(document).ready(function () {
                             top: 10
                         },
                         font: {
-                            size: 12,
+                            size: 13,
                             weight: '500'
                         }
                     }
