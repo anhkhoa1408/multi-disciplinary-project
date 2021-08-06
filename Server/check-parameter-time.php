@@ -28,6 +28,8 @@
     {
         if ($user["UserName"] == 'CSE_BBC1')
             continue;
+
+        echo $user["AIOKey"]."\n";
         
         echo $user["UserName"]."\n";
         $relay_state = ($user["toggle_time"] && check_time($user["UserName"])) || ($user["toggle_para"] && check_para($user["UserName"]));

@@ -185,7 +185,7 @@ session_start();
     <script src="/src/avg-chart.js"></script>
 
 
-    <!-- Function to get JSON text from Server AdaFruit -->
+    <!-- Function to get JSON text from database -->
     <script>
         setParam();
 
@@ -276,6 +276,10 @@ session_start();
                         $('#switch-btn').prop('checked', true);
                         $('.sprinkler_icon').css('color', '#4e73df');
                         $('.switch-sprinkler .slider').css('--col', 'rgb(76, 228, 76)')
+                    } else {
+                        $('#switch-btn').prop('checked', false);
+                        $('.switch-sprinkler .slider').css('--col', 'red')
+                        // $('.switch-sprinkler .slider').css('--col', 'rgb(76, 228, 76)')
                     }
                 },
                 error: function() {
