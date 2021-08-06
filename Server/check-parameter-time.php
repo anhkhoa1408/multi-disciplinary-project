@@ -26,8 +26,10 @@
     // For each user, get humid-temp feed data and store in db
     foreach($all_user as $index => $user)
     {
-        if ($user["UserName"] == 'CSE_BBC')
+        if ($user["UserName"] == 'CSE_BBC1')
             continue;
+
+        echo $user["AIOKey"]."\n";
         
         echo $user["UserName"]."\n";
 
