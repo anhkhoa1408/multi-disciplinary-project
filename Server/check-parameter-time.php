@@ -32,8 +32,12 @@
         echo $user["AIOKey"]."\n";
         
         echo $user["UserName"]."\n";
-
-        $is_relay_on = get_relay_state($user["UserName"], $user["AIOKey"]);
+        if ($user["UserName"] == 'CSE_BBC') {
+            $is_relay_on = get_relay_state($user["UserName"]."1", $user["AIOKey"]);
+        }
+        else {
+            $is_relay_on = get_relay_state($user["UserName"], $user["AIOKey"]);
+        }
         $relay_state = ($user["toggle_time"] && check_time($user["UserName"])) || ($user["toggle_para"] && check_para($user["UserName"]));
         echo "Relay state: ".($relay_state?"1":"0")."\n";
         if (($is_relay_on == 1 and $relay_state == FALSE) or ($is_relay_on == 0 and $relay_state == TRUE))
@@ -97,6 +101,9 @@
         date_default_timezone_set('UTC');
         if ($latest_time)
         {
+            echo $username;
+            echo date('H:i:s', time() + 7*60*60)."  ";
+            echo $latest_time['start_time'];
             if (date('H:i:s', time() + 7*60*60) >= $latest_time['start_time'] and date('H:i:s', time() + 7*60*60) <= $latest_time['end_time'])
                 return true;
         }
